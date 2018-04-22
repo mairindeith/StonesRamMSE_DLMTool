@@ -2,7 +2,7 @@
 # Uses seal OM example 
 # see http://www.datalimitedtoolkit.org/Case_Studies_Table/Grey_Seal_5ZJM_DFO/Grey_Seal_5ZJM_DFO.html)
 # Follows instructions from PDF lessons from Murdoch for FISH 505
-# Last modified on April 20, 2018
+# Last modified on April 21, 2018
 
 library(DLMtool)
 # library(DLMdata)
