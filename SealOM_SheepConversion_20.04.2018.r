@@ -5,7 +5,7 @@
 # Last modified on April 20, 2018
 
 library(DLMtool)
-library(DLMdata)
+# library(DLMdata)
 setup()
 
 sealOM <- readRDS('E://Mairin/Fish505/DLMToolProject/OM.rdata')
@@ -85,7 +85,6 @@ myData@Dep = 0.33
 myData@CV_Dep = 0.2
 
 # Cheatsheets for objects at /Help/Cheat sheets/
-
 
 # Running MPs -------------------------------------------------------------
 # In many data limited fisheries, it is likely that data prohibits some MPs
