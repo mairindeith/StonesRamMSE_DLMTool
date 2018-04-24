@@ -1,101 +1,102 @@
 
 # Title
-Include name and location of the Fishery. One line only.
+Stone's sheep ram trophy hunting
 
 # Subtitle
-Subtitle. One line only.
+Concerns harvest dynamics in WMU 7-42 in Peace River, British Columbia, Canada. 
 
 # Author(s)
-Name and contact details (e.g email, affiliation) for each author.
-One line per author.
+Mairin Deith
+mairin.deith@gmail.com
 
 # Date
-Optional. Date that the operating model was created. If none provided, today's date will be used.
+April 21, 2018
 
 # Introduction
+This operating model was specified to explore the biological and harvest outcomes of alternative size- and effort-based management procedures.
 
-## Completing the OM Documentation
-This document is used to generate a HTML OM report document.
+<!-- ## Completing the OM Documentation -->
+<!-- This document is used to generate a HTML OM report document. -->
 
-The document is separated into 7 sections:
-1. Introduction (this section)
-2. Custom Parameters (optional)
-3. Stock Parameters
-4. Fleet Parameters
-5. Obs (Observation) Parameters
-6. Imp (Implementation) Parameters
-7. References
+<!-- The document is separated into 7 sections: -->
+<!-- 1. Introduction (this section) -->
+<!-- 2. Custom Parameters (optional) -->
+<!-- 3. Stock Parameters -->
+<!-- 4. Fleet Parameters -->
+<!-- 5. Obs (Observation) Parameters -->
+<!-- 6. Imp (Implementation) Parameters -->
+<!-- 7. References -->
 
-The Introduction section is used to briefly describe the fishery and the details of the Operating Model.
-It should include an explanation for the OM parameters:
- * nsim: the number of simulations.
- * proyears: the number of projectio years.
- * interval: the management interval.
- * pstar: the percentile of the sample of the management recommendation for each method.
- * maxF: the maximum instantaneous fishing mortality rate that may be simulated for any given age class.
- * reps: the number of samples of the management recommendation for each method.
+<!-- The Introduction section is used to briefly describe the fishery and the details of the Operating Model. -->
+<!-- It should include an explanation for the OM parameters: -->
+<!--  * nsim: the number of simulations. -->
+<!--  * proyears: the number of projectio years. -->
+<!--  * interval: the management interval. -->
+<!--  * pstar: the percentile of the sample of the management recommendation for each method. -->
+<!--  * maxF: the maximum instantaneous fishing mortality rate that may be simulated for any given age class. -->
+<!--  * reps: the number of samples of the management recommendation for each method. -->
 
-The Custom Parameters section is optional and should only be included if the cpars feature of DLMtool is used in the OM.
-Delete both the heading and the text in this section if `cpars` are not used.
+<!-- The Custom Parameters section is optional and should only be included if the cpars feature of DLMtool is used in the OM. -->
+<!-- Delete both the heading and the text in this section if `cpars` are not used. -->
 
-The Stock, Fleet, Obs, and Imp sections include each slot in these components of the OM object.
-Provide details (including references where applicable) for the choice of values for each slot below the corresponding slot name (e.g., ## M).
-For example: 
-**M**
-An explanation for the values of the natural mortality rate in the OM (Smith et al. 1999).
+<!-- The Stock, Fleet, Obs, and Imp sections include each slot in these components of the OM object. -->
+<!-- Provide details (including references where applicable) for the choice of values for each slot below the corresponding slot name (e.g., ## M). -->
+<!-- For example:  -->
+<!-- **M** -->
+<!-- An explanation for the values of the natural mortality rate in the OM (Smith et al. 1999). -->
 
-You do not need to include the actual values from the OM. These will be included automatically in the final compiled document.
+<!-- You do not need to include the actual values from the OM. These will be included automatically in the final compiled document. -->
 
-References should be included in the 'References' section at the end of the document.
+<!-- References should be included in the 'References' section at the end of the document. -->
 
-Once complete, this text file will be compiled into an OM Report Document.
-This text file is linked to the Excel spreadsheet that was generated with the same file name.
-It serves as a single documentation source for a DLMtool OM, and should be updated whenever parameter values in the OM spreadsheet are updated.
+<!-- Once complete, this text file will be compiled into an OM Report Document. -->
+<!-- This text file is linked to the Excel spreadsheet that was generated with the same file name. -->
+<!-- It serves as a single documentation source for a DLMtool OM, and should be updated whenever parameter values in the OM spreadsheet are updated. -->
 
-## Tips on filling this Document
+<!-- ## Tips on filling this Document -->
 
-This document is uses the Markdown format. All first and second level headings have been provided, and in general you
-should only need to enter plain text.
+<!-- This document is uses the Markdown format. All first and second level headings have been provided, and in general you -->
+<!-- should only need to enter plain text. -->
 
-You can have multiple paragraphs throughout the document.
+<!-- You can have multiple paragraphs throughout the document. -->
 
-The Introduction and Custom Parameters sections also support second and third level headings.
+<!-- The Introduction and Custom Parameters sections also support second and third level headings. -->
 
-## An example Second level heading
+<!-- ## An example Second level heading -->
 
-### An example third level heading
+<!-- ### An example third level heading -->
 
-### Technical Tip
+<!-- ### Technical Tip -->
 
-This document will be compiled into Rmarkdown, and then a HTML document using Pandoc. Equations can be included by
+<!-- This document will be compiled into Rmarkdown, and then a HTML document using Pandoc. Equations can be included by -->
 
-using Latex (see [here](https://www.sharelatex.com/learn/Mathematical_expressions) for some examples).
+<!-- using Latex (see [here](https://www.sharelatex.com/learn/Mathematical_expressions) for some examples). -->
 
-## Replace all text below 'Introduction' new text.
+<!-- ## Replace all text below 'Introduction' new text. -->
 
 
 
-# Custom Parameters
-Optional. Only required if the `cpars` feature is used in the OM.
+<!-- # Custom Parameters -->
+<!-- Optional. Only required if the `cpars` feature is used in the OM. -->
 
-Provide details for the parameters included in 'cpars' here instead of in the corresponding slot sections below.
-Text in the slot section below will be ignored if a parameter is included in 'cpars'.
-Delete this section (including heading) if the `cpars` feature is not used in the OM.
+<!-- Provide details for the parameters included in 'cpars' here instead of in the corresponding slot sections below. -->
+<!-- Text in the slot section below will be ignored if a parameter is included in 'cpars'. -->
+<!-- Delete this section (including heading) if the `cpars` feature is not used in the OM. -->
 
 
 # Stock Parameters
 
 ## Common_Name
-No justification provided. 
+Stone's sheep 
 
 ## maxage
-No justification provided. 
+16
 
 ## R0
-No justification provided. 
+Value taken from that estimated with SRA.
 
 ## M
-No justification provided. 
+Age-specific mortality from 
 
 ## M2
 No justification provided. 
@@ -373,7 +374,7 @@ No justification provided.
 ## SizeLimSD
 No justification provided. 
 
-
+This 
 
 # References
 

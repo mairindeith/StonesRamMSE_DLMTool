@@ -17,11 +17,16 @@ OMinit('WMU42_StonesSheep_baseCase')
 OMdoc('WMU42_StonesSheep_baseCase') # This looks for the file 
 # WMU42_StonesSheep_baseCase.rmd and populates an HTML based off of it
 
-# Then 
-stonesSheepOM <- XL2OM("WMU42_StonesSheep.xlsx")
-
-plot(stonesSheepOM)
+# Then read it in
+# IT'S WORKING!!!!
+stonesSheepOM <- XL2OM("baseCaseOM/WMU42_StonesSheep_baseCase.xlsx")
+hakeOM <- XL2OM("Example_Chile_Hake.xlsx")
+plot(hakeOM)
 
 mps <- c('!!!LIST OF RELEVANT MPS HERE!!!')
-sheepMSE <- runMSE(stonesSheepOM, MPs) #, parallel=T) # remove # if successful
+hakeMSE <- runMSE(hakeOM) #, parallel=T) # remove # if successful
+hakeMSE <- runMSE(hakeOM, MPs = c('AvC','NFref','ITM','EtargetLopt','DD','Fadapt','Fratio'), parallel=T) # remove # if successful
+# Custom performance metrics:
+# Maintain male population >20% of females (in an overhunted population, 20:100 is a common ratio:
+# Status of Thinhorn Sheep in British Columbia)
 
