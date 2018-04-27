@@ -78,8 +78,11 @@ setwd("~/Documents/UBC/Classes/FISH505/DLMToolProject/selectiveHorns_om3/")
 ### Initialize a blank operating model
 OMinit('WMU42_StonesSheep_selective_om3')
 stonesSheepOM3 <- XL2OM("WMU42_StonesSheep_selective_om3")
-plot(stonesSheepOM3)
 
+### FIX RMD !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+OMdoc('WMU42_StonesSheep_selective_om3')
+plot(stonesSheepOM3)
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 sheepMSE_om3 <- runMSE(stonesSheepOM3, MPs = mps1, parallel=T)
 
 NOAA_plot(sheepMSE_om3)
@@ -89,14 +92,34 @@ Tplot(sheepMSE_om3)
 Converge(sheepMSE_om3) # Converged
 
 
-# OM4 - Selectivity skewed towards older/younger males -------------------------------------------------------
-setwd("~/Documents/UBC/Classes/FISH505/DLMToolProject/")
-dir.create('selectivityYounger_om4a')
+# OM4a - Selectivity skewed towards younger(A) males ------------------------
+# setwd("~/Documents/UBC/Classes/FISH505/DLMToolProject/")
+# dir.create('selectivityYounger_om4a')
 setwd("~/Documents/UBC/Classes/FISH505/DLMToolProject/selectivityYounger_om4a/")
 
 ### Initialize a blank operating model
 OMinit('WMU42_StonesSheep_selectivityYounger_om4a')
-stonesSheepOM3 <- XL2OM("WMU42_StonesSheep_selectivityYounger_om4a")
+stonesSheepOM4a <- XL2OM("WMU42_StonesSheep_selectivityYounger_om4a")
+plot(stonesSheepOM4a)
+
+OMdoc('WMU42_StonesSheep_selectivityYounger_om4a')
+
+sheepMSE_om4a <- runMSE(stonesSheepOM4a, MPs = mps1, parallel=T)
+
+
+# OM4b - Selectivity skewed towards older (B) males -------------------------
+# setwd("~/Documents/UBC/Classes/FISH505/DLMToolProject/")
+# dir.create('selectivityOlder_om4b')
+setwd("~/Documents/UBC/Classes/FISH505/DLMToolProject/selectivityOlder_om4b/")
+
+### Initialize a blank operating model
+# OMinit('WMU42_StonesSheep_selectivityOlder_om4b')
+stonesSheepOM4b <- XL2OM("WMU42_StonesSheep_selectivityOlder_om4b")
+plot(stonesSheepOM4b)
+
+OMdoc('WMU42_StonesSheep_selectivityOlder_om4b')
+
+
 
 
 # List of available MPs and descriptions ----------------------------------

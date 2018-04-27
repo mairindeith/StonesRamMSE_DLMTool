@@ -17,7 +17,11 @@ output:
 
 
 
-This operating model was specified to explore the biological and harvest outcomes of alternative size- and effort-based management procedures.
+This operating model was specified to explore the biological and harvest outcomes of alternative size- and effort-based management procedures. 
+
+
+
+*This is a numbers-based and horn-length based model. Weight of harvested individuals therefore does not reflect the body mass of harvested rams. Rather, it reflects the harvested horn length.
 
 
 
@@ -145,7 +149,7 @@ Beverton-Holt relationship chosen (1) instead of the Ricker relationship (2).
 
 **Perr**: Process error, the CV of lognormal recruitment deviations. Uniform distribution lower and upper bounds. Non-negative real numbers
 
-Specified Value(s): <span style='color:blue'> 0.3, 1.72</span>
+Specified Value(s): <span style='color:blue'> 0.94, 1.06</span>
 
 Indicates very low interannual variability in recruitment 
 
@@ -170,27 +174,17 @@ plotSlot(OM, Pars, slot='h')
 
 **Period**: (Optional) Period for cyclical recruitment pattern in years. Uniform distribution lower and upper bounds. Non-negative real numbers
 
-Specified Value(s): <span style='color:blue'> 8, 12</span>
-
-No periodic changes in recruitment; implemented in stress-case OM2. 
-
-
-
+Slot not used.
 
 **Amplitude**: (Optional) Amplitude in deviation from long-term average recruitment during recruitment cycle (eg a range from 0 to 1 means recruitment decreases or increases by up to 100% each cycle). Uniform distribution lower and upper bounds. 0 < Amplitude < 1
 
-Specified Value(s): <span style='color:blue'> 0.3, 0.7</span>
-
-Same as above. 
-
-
-
+Slot not used.
 
 ### Growth: Linf, K, t0, LenCV, Ksd, Kgrad, Linfsd, Linfgrad
 
 **Linf**: Maximum length. Uniform distribution lower and upper bounds. Positive real numbers
 
-Specified Value(s): <span style='color:blue'> 100.16, 133.12</span>
+Specified Value(s): <span style='color:blue'> 100.13, 133.54</span>
 
 Numbers taken from distribution of horn lengths at age (in cm) from trophy horns, which were used to calculate a von Bertalaffy growth curve for ram horns. 
 
@@ -199,7 +193,7 @@ Numbers taken from distribution of horn lengths at age (in cm) from trophy horns
 
 **K**: von Bertalanffy growth parameter k. Uniform distribution lower and upper bounds. Positive real numbers
 
-Specified Value(s): <span style='color:blue'> 0.32, 0.42</span>
+Specified Value(s): <span style='color:blue'> 0.33, 0.42</span>
 
 From the von Bertalaffy model. 
 
@@ -208,7 +202,7 @@ From the von Bertalaffy model.
 
 **t0**: von Bertalanffy theoretical age at length zero. Uniform distribution lower and upper bounds. Non-positive real numbers
 
-Specified Value(s): <span style='color:blue'> -0.1, 0.09</span>
+Specified Value(s): <span style='color:blue'> -0.1, 0.1</span>
 
 From the von Bertalaffy model.  
 
@@ -269,7 +263,7 @@ plotSlot(OM, Pars, slot='Linf')
 
 **L50**: Length at 50 percent maturity. Uniform distribution lower and upper bounds. Positive real numbers
 
-Specified Value(s): <span style='color:blue'> 65.03, 79.51</span>
+Specified Value(s): <span style='color:blue'> 65.07, 79.2</span>
 
 Horn length at 50% maturity is between 3/4 and full curl males (who are typically legal to hunt if their horns are >90cm).  
 Stress-case OMs 4a and 4b investigates an alternative selectivity curves. 
@@ -279,7 +273,7 @@ Stress-case OMs 4a and 4b investigates an alternative selectivity curves.
 
 **L50_95**: Length increment from 50 percent to 95 percent maturity. Uniform distribution lower and upper bounds. Positive real numbers
 
-Specified Value(s): <span style='color:blue'> 10.18, 29.58</span>
+Specified Value(s): <span style='color:blue'> 10.03, 28.21</span>
 
 The rate of horn growth decelerates with age, and little horn growth distinguishes males at 50% maturity with those 95% vulnerable.   
 
@@ -624,7 +618,7 @@ See above.
 
 **CAA_nsamp**: Number of catch-at-age observation per time step. Uniform distribution lower and upper bounds. Positive real numbers
 
-Specified Value(s): <span style='color:blue'> 42, 60</span>
+Specified Value(s): <span style='color:blue'> 43, 60</span>
 
 Assumes an average of 50 rams are harvested each year and inspected by governmental agents. 
 
@@ -642,7 +636,7 @@ See above.
 
 **CAL_nsamp**: Number of catch-at-length observation per time step. Uniform distribution lower and upper bounds. Positive integers
 
-Specified Value(s): <span style='color:blue'> 42, 60</span>
+Specified Value(s): <span style='color:blue'> 41, 60</span>
 
 See above. 
 
@@ -651,7 +645,7 @@ See above.
 
 **CAL_ESS**: Effective sample size (independent length draws) of the multinomial catch-at-length observation error model. Uniform distribution lower and upper bounds. Positive integers
 
-Specified Value(s): <span style='color:blue'> 41, 60</span>
+Specified Value(s): <span style='color:blue'> 42, 60</span>
 
 See above. 
 
@@ -895,7 +889,7 @@ All TAC taken without SD in implementation.
 
 **TACSD**: Log-normal coefficient of variation in the fraction of Total Allowable Catch (TAC) taken. Uniform distribution lower and upper bounds. Non-negative real numbers.
 
-Specified Value(s): <span style='color:blue'> 0, 0.1</span>
+Specified Value(s): <span style='color:blue'> 0.01, 0.02</span>
 
 Default value. 
 
@@ -906,7 +900,7 @@ Default value.
 
 **TAEFrac**: Mean fraction of TAE taken. Uniform distribution lower and upper bounds. Positive real number.
 
-Specified Value(s): <span style='color:blue'> 0.01, 0.02</span>
+Specified Value(s): <span style='color:blue'> 1, 1</span>
 
 No justification provided.  
 
@@ -915,7 +909,7 @@ No justification provided.
 
 **TAESD**: Log-normal coefficient of variation in the fraction of Total Allowable Effort (TAE) taken. Uniform distribution lower and upper bounds. Non-negative real numbers.
 
-Specified Value(s): <span style='color:blue'> 1, 1</span>
+Specified Value(s): <span style='color:blue'> 0.01, 0.02</span>
 
 No justification provided.  
 
