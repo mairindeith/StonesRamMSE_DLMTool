@@ -1,10 +1,8 @@
 ---
-title: 'Operating Model: StonesSheep_WMU42'
-subtitle: 'This OM concerns harvest dynamics in WMU 7-42 in Peace River, British Columbia, Canada.'
-author:
-- Mairin Deith
-- mairin.deith@gmail.com
-date: April 21, 2018
+title: 'Stones Sheep in the Peace Region (OM4a)'
+subtitle: 'Stress-test OM that models the case where hunters select younger males.'
+author: Mairin Deith, mairin.deith@gmail.com
+date: 
 output: 
    html_document:
      toc: true
@@ -17,15 +15,9 @@ output:
 
 
 
-This operating model was specified to explore the biological and harvest outcomes of alternative size- and effort-based management procedures. 
+## Numbers based model
 
-
-
-*This is a numbers-based and horn-length based model. Weight of harvested individuals therefore does not reflect the body mass of harvested rams. Rather, it reflects the harvested horn length.
-
-
-
-
+This operating model was specified to explore the biological and harvest outcomes of alternative size- and effort-based management procedures in WMU 742 in the Peace Region of British Columbia. 
 
 
 
@@ -81,7 +73,7 @@ Value taken from SRA estimates of recruitment at unharvested levels.
 
 Specified Value(s): <span style='color:blue'> 0.53, 0.61</span>
 
-Age-specific mortality from *CITE* 
+Age-specific mortality from Hoefs and Bayer, 1983. 
 
 
 
@@ -316,7 +308,7 @@ Numbers-based model, not weight-based.
 
 Specified Value(s): <span style='color:blue'> 1, 1</span>
 
-Numbers model.  
+Numbers model - by setting b to zero, each individual's weight = 1, and harvested 'biomass' becomes harvested numbers instead. 
 
 
 
@@ -464,7 +456,7 @@ plotSlot(OM, Pars, slot='qcv')
 
 Specified Value(s): <span style='color:blue'> 85, 85</span>
 
-This OM assumes that hunter selectivity is higher for younger/smaller-horned males than seen historically. This could occur if, for example, legal males now include 3/4 curl rams as well as full-curl rams.  
+Length taken from percentile distribution of catch-at-age data from compulsory horn inspections. 
 
 
 
@@ -954,4 +946,14 @@ plot.OM(out)
 
 
 # References
+
+
+
+
+
+Douhard, M., Festa-Bianchet, M., Pelletier, F., Gaillard, J.M., and Bonenfanti, C. 2016. Changes in horn size of Stone's sheep over four decades correlate with trophy hunting pressure. Ecological Applications 26(1): 309-21.
+
+
+
+Hoefs, M., and Bayer, M. 1983. Demographic characteristics of an unhunted Dall sheep (Ovis dalli dalli) population in southwest Yukon, Canada. Canadian Journal of Zoology 61(6): 1346-1357.
 

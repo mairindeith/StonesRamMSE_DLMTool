@@ -1,195 +1,125 @@
 
 # Title
-Include name and location of the Fishery. One line only.
+Stones Sheep in the Peace Region (OM3)
 
 # Subtitle
-Subtitle. One line only.
+Stress-test OM that models gradual reductions in horn length due to selective harvesting pressure.
 
 # Author(s)
-Name and contact details (e.g email, affiliation) for each author.
-One line per author.
+Mairin Deith, mairin.deith@gmail.com
 
 # Date
-Optional. Date that the operating model was created. If none provided, today's date will be used.
 
 # Introduction
 
-## Completing the OM Documentation
-This document is used to generate a HTML OM report document.
-
-The document is separated into 7 sections:
-1. Introduction (this section)
-2. Custom Parameters (optional)
-3. Stock Parameters
-4. Fleet Parameters
-5. Obs (Observation) Parameters
-6. Imp (Implementation) Parameters
-7. References
-
-The Introduction section is used to briefly describe the fishery and the details of the Operating Model.
-It should include an explanation for the OM parameters:
- * nsim: the number of simulations.
- * proyears: the number of projectio years.
- * interval: the management interval.
- * pstar: the percentile of the sample of the management recommendation for each method.
- * maxF: the maximum instantaneous fishing mortality rate that may be simulated for any given age class.
- * reps: the number of samples of the management recommendation for each method.
-
-The Custom Parameters section is optional and should only be included if the cpars feature of DLMtool is used in the OM.
-Delete both the heading and the text in this section if `cpars` are not used.
-
-The Stock, Fleet, Obs, and Imp sections include each slot in these components of the OM object.
-Provide details (including references where applicable) for the choice of values for each slot below the corresponding slot name (e.g., ## M).
-For example: 
-**M**
-An explanation for the values of the natural mortality rate in the OM (Smith et al. 1999).
-
-You do not need to include the actual values from the OM. These will be included automatically in the final compiled document.
-
-References should be included in the 'References' section at the end of the document.
-
-Once complete, this text file will be compiled into an OM Report Document.
-This text file is linked to the Excel spreadsheet that was generated with the same file name.
-It serves as a single documentation source for a DLMtool OM, and should be updated whenever parameter values in the OM spreadsheet are updated.
-
-## Tips on filling this Document
-
-This document is uses the Markdown format. All first and second level headings have been provided, and in general you
-should only need to enter plain text.
-
-You can have multiple paragraphs throughout the document.
-
-The Introduction and Custom Parameters sections also support second and third level headings.
-
-## An example Second level heading
-
-### An example third level heading
-
-### Technical Tip
-
-This document will be compiled into Rmarkdown, and then a HTML document using Pandoc. Equations can be included by
-
-using Latex (see [here](https://www.sharelatex.com/learn/Mathematical_expressions) for some examples).
-
-## Replace all text below 'Introduction' new text.
-
-
-
-# Custom Parameters
-Optional. Only required if the `cpars` feature is used in the OM.
-
-Provide details for the parameters included in 'cpars' here instead of in the corresponding slot sections below.
-Text in the slot section below will be ignored if a parameter is included in 'cpars'.
-Delete this section (including heading) if the `cpars` feature is not used in the OM.
-
+## Numbers based model
+This operating model was specified to explore the biological and harvest outcomes of alternative size- and effort-based management procedures in WMU 742 in the Peace Region of British Columbia. 
 
 # Stock Parameters
 
 ## Common_Name
-No justification provided. 
+Stone's sheep 
 
 ## maxage
-No justification provided. 
+16, from the maximum age of horns identified during compulsory inspections.
 
 ## R0
-No justification provided. 
+Value taken from SRA estimates of recruitment at unharvested levels.
 
 ## M
-No justification provided. 
+Age-specific mortality from Hoefs and Bayer, 1983.
 
 ## M2
-No justification provided. 
+The same values for M, but increased slightly (by 0.01, as per the gray seal example).  
 
 ## Mexp
-No justification provided. 
+Slot not used.
 
 ## Msd
-No justification provided. 
+Assumes low variability in natural mortality between years. 
 
 ## Mgrad
-No justification provided. 
+No gradual changes in natural mortality expected.
 
 ## h
-No justification provided. 
+Value taken from SRA estimates of Beverton-Holt steepness. 
 
 ## SRrel
-No justification provided. 
+Beverton-Holt relationship chosen (1) instead of the Ricker relationship (2).
 
 ## Perr
-No justification provided. 
+Indicates very low interannual variability in recruitment
 
 ## AC
-No justification provided. 
+Value calculated from the lag-1 autocorrelation of recruits in the historical time series.
 
 ## Period
-No justification provided. 
+No periodic changes in recruitment; implemented in stress-case OM2.
 
 ## Amplitude
-No justification provided. 
+Same as above.
 
 ## Linf
-No justification provided. 
+Numbers taken from distribution of horn lengths at age (in cm) from trophy horns, which were used to calculate a von Bertalaffy growth curve for ram horns.
 
 ## K
-No justification provided. 
+From the von Bertalaffy model.
 
 ## t0
-No justification provided. 
+From the von Bertalaffy model. 
 
 ## LenCV
-No justification provided. 
+From the von Bertalaffy model. 
 
 ## Ksd
-No justification provided. 
+Unknown, default value maintained in the OM. 
 
 ## Kgrad
-No justification provided. 
+Selective pressures reduce average horn size (as per Douhard et al. 2016). 
 
 ## Linfsd
-No justification provided. 
+Unknown, default value maintained in the OM. 
 
 ## Linfgrad
-No justification provided. 
+No persistent change in Linfgrad; implemented in stress-case OM3 where selective pressures reduce average horn size (as per Douhard et al. 2016). 
 
 ## L50
-No justification provided. 
+Horn length at 50% maturity is between 3/4 and full curl males (who are typically legal to hunt if their horns are >90cm). 
+Stress-case OMs 4a and 4b investigates an alternative selectivity curves.
 
 ## L50_95
-No justification provided. 
+The rate of horn growth decelerates with age, and little horn growth distinguishes males at 50% maturity with those 95% vulnerable.  
 
 ## D
-No justification provided. 
+Value from SRA, which indicated the stock to be at 71% of unharvested levels.
 
 ## a
-No justification provided. 
+Numbers-based model, not weight-based.
 
 ## b
-No justification provided. 
+Numbers model - by setting b to zero, each individual's weight = 1, and harvested 'biomass' becomes harvested numbers instead.
 
 ## Size_area_1
-No justification provided. 
+Unknown, default value maintained in the OM. 
 
 ## Frac_area_1
-No justification provided. 
+Unknown, default value maintained in the OM. 
 
 ## Prob_staying
-No justification provided. 
+Unknown, default value maintained in the OM. 
 
 ## Fdisc
-No justification provided. 
-
-## Source
-No justification provided. 
+Unknown, default value maintained in the OM. 
 
 
 
 # Fleet Parameters
 
 ## nyears
-No justification provided. 
+Catch-at-age data from compulsory inspections range from 1975 to 2016.
 
 ## Spat_targ
-No justification provided. 
+Unknown, default value maintained in the OM. 
 
 ## EffYears
 No justification provided. 
@@ -210,156 +140,154 @@ No justification provided.
 No justification provided. 
 
 ## L5
-No justification provided. 
+Length taken from percentile distribution of catch-at-age data from compulsory horn inspections.
 
 ## LFS
-No justification provided. 
+See above.
 
 ## Vmaxlen
-No justification provided. 
+At maximum length, vulnerability to hunting is 1. 
 
 ## isRel
-No justification provided. 
+Default value. 
 
 ## LR5
-No justification provided. 
+Assume that retention follows selectivity.
 
 ## LFR
-No justification provided. 
+Assume that retention follows selectivity. 
 
 ## Rmaxlen
-No justification provided. 
+Assume that retention follows selectivity. 
 
 ## DR
-No justification provided. 
+Assume no discardings (there is little evidence of discarded rams). 
 
 ## SelYears
-No justification provided. 
+Slot not used.
 
 ## AbsSelYears
-No justification provided. 
+Slot not used.
 
 ## L5Lower
-No justification provided. 
+Slot not used.
 
 ## L5Upper
-No justification provided. 
+Slot not used.
 
 ## LFSLower
-No justification provided. 
+Slot not used.
 
 ## LFSUpper
-No justification provided. 
+Slot not used.
 
 ## VmaxLower
-No justification provided. 
+Slot not used.
 
 ## VmaxUpper
-No justification provided. 
 
 ## CurrentYr
-No justification provided. 
 
 ## MPA
-No justification provided. 
+Slot not used.
 
 
 
 # Obs Parameters
 
 ## Cobs
-No justification provided. 
+Because all hunters must present trophy rams for compulsory inspection, this OM assumes that catches are observed without bias.
 
 ## Cbiascv
-No justification provided. 
+See above.
 
 ## CAA_nsamp
-No justification provided. 
+Assumes an average of 50 rams are harvested each year and inspected by governmental agents.
 
 ## CAA_ESS
-No justification provided. 
+See above.
 
 ## CAL_nsamp
-No justification provided. 
+See above.
 
 ## CAL_ESS
-No justification provided. 
+See above.
 
 ## Iobs
-No justification provided. 
+Default value.
 
 ## Ibiascv
-No justification provided. 
+Default value, not used.
 
 ## Btobs
-No justification provided. 
+Default value.
 
 ## Btbiascv
-No justification provided. 
+Default value.
 
 ## beta
-No justification provided. 
+Default value.
 
 ## LenMbiascv
-No justification provided. 
+Default value.
 
 ## Mbiascv
-No justification provided. 
+Default value.
 
 ## Kbiascv
-No justification provided. 
+Default value.
 
 ## t0biascv
-No justification provided. 
+Default value.
 
 ## Linfbiascv
-No justification provided. 
+Default value.
 
 ## LFCbiascv
-No justification provided. 
+Default value.
 
 ## LFSbiascv
-No justification provided. 
+Default value.
 
 ## FMSYbiascv
-No justification provided. 
+Default value.
 
 ## FMSY_Mbiascv
-No justification provided. 
+Default value.
 
 ## BMSY_B0biascv
-No justification provided. 
+Default value.
 
 ## Irefbiascv
-No justification provided. 
+Default value.
 
 ## Brefbiascv
-No justification provided. 
+Default value.
 
 ## Crefbiascv
-No justification provided. 
+Default value.
 
 ## Dbiascv
-No justification provided. 
+Default value.
 
 ## Dobs
-No justification provided. 
+Default value.
 
 ## hbiascv
-No justification provided. 
+Default value.
 
 ## Recbiascv
-No justification provided. 
+Default value.
 
 
 
 # Imp Parameters
 
 ## TACFrac
-No justification provided. 
+All TAC taken without SD in implementation. 
 
 ## TACSD
-No justification provided. 
+Default value.
 
 ## TAEFrac
 No justification provided. 
@@ -368,12 +296,16 @@ No justification provided.
 No justification provided. 
 
 ## SizeLimFrac
-No justification provided. 
+Assume that a size limit would be well-implemented.
 
 ## SizeLimSD
-No justification provided. 
+Assume some minor variation in size limits.
 
 
 
 # References
 
+
+Douhard, M., Festa-Bianchet, M., Pelletier, F., Gaillard, J.M., and Bonenfanti, C. 2016. Changes in horn size of Stone's sheep over four decades correlate with trophy hunting pressure. Ecological Applications 26(1): 309-21.
+
+Hoefs, M., and Bayer, M. 1983. Demographic characteristics of an unhunted Dall sheep (Ovis dalli dalli) population in southwest Yukon, Canada. Canadian Journal of Zoology 61(6): 1346-1357.

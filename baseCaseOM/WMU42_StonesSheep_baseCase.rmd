@@ -1,23 +1,19 @@
 
 # Title
+Stones Sheep in the Peace Region (OM1)
 
 # Subtitle
-This OM concerns harvest dynamics in WMU 7-42 in Peace River, British Columbia, Canada. 
+Base-case OM that reflects status-quo patterns in population and harvest dynamics.
 
 # Author(s)
-Mairin Deith
-mairin.deith@gmail.com
+Mairin Deith, mairin.deith@gmail.com
 
 # Date
-April 21, 2018
 
 # Introduction
 
-This operating model was specified to explore the biological and harvest outcomes of alternative size- and effort-based management procedures. 
-
-*This is a numbers-based and horn-length based model. Weight of harvested individuals therefore does not reflect the body mass of harvested rams. Rather, it reflects the harvested horn length.
-
-
+## Numbers based model
+This operating model was specified to explore the biological and harvest outcomes of alternative size- and effort-based management procedures in WMU 742 in the Peace Region of British Columbia. 
 
 # Stock Parameters
 
@@ -31,7 +27,7 @@ Stone's sheep
 Value taken from SRA estimates of recruitment at unharvested levels.
 
 ## M
-Age-specific mortality from *CITE*
+Age-specific mortality from Hoefs and Bayer, 1983.
 
 ## M2
 The same values for M, but increased slightly (by 0.01, as per the gray seal example).  
@@ -101,7 +97,7 @@ Value from SRA, which indicated the stock to be at 71% of unharvested levels.
 Numbers-based model, not weight-based.
 
 ## b
-Numbers model. 
+Numbers model - by setting b to zero, each individual's weight = 1, and harvested 'biomass' becomes harvested numbers instead.
 
 ## Size_area_1
 Unknown, default value maintained in the OM. 
@@ -308,4 +304,8 @@ Assume some minor variation in size limits.
 
 
 # References
+
+
 Douhard, M., Festa-Bianchet, M., Pelletier, F., Gaillard, J.M., and Bonenfanti, C. 2016. Changes in horn size of Stone's sheep over four decades correlate with trophy hunting pressure. Ecological Applications 26(1): 309-21.
+
+Hoefs, M., and Bayer, M. 1983. Demographic characteristics of an unhunted Dall sheep (Ovis dalli dalli) population in southwest Yukon, Canada. Canadian Journal of Zoology 61(6): 1346-1357.

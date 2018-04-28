@@ -29,7 +29,7 @@ plot(stonesSheepOM)
 mps1 <- c('AvC', # Status-quo harvest
 #         'curE', # Keep fishing at current effort levels
          'NFref', # No harvesting scenario
-         'ITM', # Harvest based on natural mortality
+#         'ITM', # Harvest based on natural mortality
          'matlenlim', # Retention set according to maturity curve
          'CompSRA', # Age-composition based on current estimate of stock depletion; catch-at-age
          'Fdem', #FMSY set to r/2
@@ -57,7 +57,8 @@ Converge(sheepMSE_baseOM)
 
 # OM2 - Periodic changes to recruitment -----------------------------------
 setwd("~/Documents/UBC/Classes/FISH505/DLMToolProject/periodicRecruitment_om2/")
-OMdoc('WMU42_StonesSheep_periodicRec')
+OMdoc('WMU42_StonesSheep_periodicRecruitment')
+
 stonesSheepOM2 <- XL2OM("WMU42_StonesSheep_periodicRecruitment")
 plot(stonesSheepOM2)
 

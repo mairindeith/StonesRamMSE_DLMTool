@@ -1,10 +1,8 @@
 ---
-title: 'Include name and location of the Fishery. One line only.'
-subtitle: 'Subtitle. One line only.'
-author:
-- Name and contact details (e.g email, affiliation) for each author.
-- One line per author.
-date: 26 April 2018
+title: 'Stones Sheep in the Peace Region (OM3)'
+subtitle: 'Stress-test OM that models gradual reductions in horn length due to selective harvesting pressure.'
+author: Mairin Deith, mairin.deith@gmail.com
+date: 
 output: 
    html_document:
      toc: true
@@ -17,125 +15,9 @@ output:
 
 
 
-## Completing the OM Documentation
+## Numbers based model
 
-This document is used to generate a HTML OM report document.
-
-
-
-The document is separated into 7 sections:
-
-1. Introduction (this section)
-
-2. Custom Parameters (optional)
-
-3. Stock Parameters
-
-4. Fleet Parameters
-
-5. Obs (Observation) Parameters
-
-6. Imp (Implementation) Parameters
-
-7. References
-
-
-
-The Introduction section is used to briefly describe the fishery and the details of the Operating Model.
-
-It should include an explanation for the OM parameters:
-
- * nsim: the number of simulations.
-
- * proyears: the number of projectio years.
-
- * interval: the management interval.
-
- * pstar: the percentile of the sample of the management recommendation for each method.
-
- * maxF: the maximum instantaneous fishing mortality rate that may be simulated for any given age class.
-
- * reps: the number of samples of the management recommendation for each method.
-
-
-
-The Custom Parameters section is optional and should only be included if the cpars feature of DLMtool is used in the OM.
-
-Delete both the heading and the text in this section if `cpars` are not used.
-
-
-
-The Stock, Fleet, Obs, and Imp sections include each slot in these components of the OM object.
-
-Provide details (including references where applicable) for the choice of values for each slot below the corresponding slot name (e.g., ## M).
-
-For example: 
-
-**M**
-
-An explanation for the values of the natural mortality rate in the OM (Smith et al. 1999).
-
-
-
-You do not need to include the actual values from the OM. These will be included automatically in the final compiled document.
-
-
-
-References should be included in the 'References' section at the end of the document.
-
-
-
-Once complete, this text file will be compiled into an OM Report Document.
-
-This text file is linked to the Excel spreadsheet that was generated with the same file name.
-
-It serves as a single documentation source for a DLMtool OM, and should be updated whenever parameter values in the OM spreadsheet are updated.
-
-
-
-## Tips on filling this Document
-
-
-
-This document is uses the Markdown format. All first and second level headings have been provided, and in general you
-
-should only need to enter plain text.
-
-
-
-You can have multiple paragraphs throughout the document.
-
-
-
-The Introduction and Custom Parameters sections also support second and third level headings.
-
-
-
-## An example Second level heading
-
-
-
-### An example third level heading
-
-
-
-### Technical Tip
-
-
-
-This document will be compiled into Rmarkdown, and then a HTML document using Pandoc. Equations can be included by
-
-
-
-using Latex (see [here](https://www.sharelatex.com/learn/Mathematical_expressions) for some examples).
-
-
-
-## Replace all text below 'Introduction' new text.
-
-
-
-
+This operating model was specified to explore the biological and harvest outcomes of alternative size- and effort-based management procedures in WMU 742 in the Peace Region of British Columbia. 
 
 
 
@@ -173,7 +55,7 @@ using Latex (see [here](https://www.sharelatex.com/learn/Mathematical_expression
 
 Specified Value(s): <span style='color:blue'> 16, 16</span>
 
-No justification provided.  
+16, from the maximum age of horns identified during compulsory inspections. 
 
 
 
@@ -182,7 +64,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 294.05, 294.05</span>
 
-No justification provided.  
+Value taken from SRA estimates of recruitment at unharvested levels. 
 
 
 
@@ -191,7 +73,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0.53, 0.61</span>
 
-No justification provided.  
+Age-specific mortality from Hoefs and Bayer, 1983. 
 
 
 
@@ -200,7 +82,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0.55, 0.08, 0.04, 0.05, 0.06, 0.07, 0.11, 0.16, 0.27, 0.42, 0.78, 1.21, 1.21, 1.21, 1.21, 1.21</span>
 
-No justification provided.  
+The same values for M, but increased slightly (by 0.01, as per the gray seal example).   
 
 
 
@@ -209,7 +91,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0, 0</span>
 
-No justification provided.  
+Slot not used. 
 
 
 
@@ -218,7 +100,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0.06, 0.15</span>
 
-No justification provided.  
+Assumes low variability in natural mortality between years.  
 
 
 
@@ -227,7 +109,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0, 0</span>
 
-No justification provided.  
+No gradual changes in natural mortality expected. 
 
 
 
@@ -243,7 +125,7 @@ plotSlot(OM, Pars, slot='M')
 
 Specified Value(s): <span style='color:blue'> 0.75, 0.9</span>
 
-No justification provided.  
+Value taken from SRA estimates of Beverton-Holt steepness.  
 
 
 
@@ -252,7 +134,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 1, 1</span>
 
-No justification provided.  
+Beverton-Holt relationship chosen (1) instead of the Ricker relationship (2). 
 
 
 
@@ -261,7 +143,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0.94, 1.06</span>
 
-No justification provided.  
+Indicates very low interannual variability in recruitment 
 
 
 
@@ -270,7 +152,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0.26, 0.63</span>
 
-No justification provided.  
+Value calculated from the lag-1 autocorrelation of recruits in the historical time series. 
 
 
 
@@ -296,7 +178,7 @@ Slot not used.
 
 Specified Value(s): <span style='color:blue'> 100.13, 133.54</span>
 
-No justification provided.  
+Numbers taken from distribution of horn lengths at age (in cm) from trophy horns, which were used to calculate a von Bertalaffy growth curve for ram horns. 
 
 
 
@@ -305,7 +187,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0.33, 0.42</span>
 
-No justification provided.  
+From the von Bertalaffy model. 
 
 
 
@@ -314,7 +196,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> -0.1, 0.09</span>
 
-No justification provided.  
+From the von Bertalaffy model.  
 
 
 
@@ -323,7 +205,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0.1, 0.12</span>
 
-No justification provided.  
+From the von Bertalaffy model.  
 
 
 
@@ -332,7 +214,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0, 0</span>
 
-No justification provided.  
+Unknown, default value maintained in the OM.  
 
 
 
@@ -341,7 +223,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> -0.05, -0.03</span>
 
-No justification provided.  
+Selective pressures reduce average horn size (as per Douhard et al. 2016).  
 
 
 
@@ -350,7 +232,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0, 0</span>
 
-No justification provided.  
+Unknown, default value maintained in the OM.  
 
 
 
@@ -359,7 +241,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0, 0</span>
 
-No justification provided.  
+No persistent change in Linfgrad; implemented in stress-case OM3 where selective pressures reduce average horn size (as per Douhard et al. 2016).  
 
 
 
@@ -375,7 +257,8 @@ plotSlot(OM, Pars, slot='Linf')
 
 Specified Value(s): <span style='color:blue'> 65.09, 79.83</span>
 
-No justification provided.  
+Horn length at 50% maturity is between 3/4 and full curl males (who are typically legal to hunt if their horns are >90cm).  
+Stress-case OMs 4a and 4b investigates an alternative selectivity curves. 
 
 
 
@@ -384,7 +267,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 10.03, 29.62</span>
 
-No justification provided.  
+The rate of horn growth decelerates with age, and little horn growth distinguishes males at 50% maturity with those 95% vulnerable.   
 
 
 
@@ -400,7 +283,7 @@ plotSlot(OM, Pars, slot='L50')
 
 Specified Value(s): <span style='color:blue'> 0.65, 0.75</span>
 
-No justification provided.  
+Value from SRA, which indicated the stock to be at 71% of unharvested levels. 
 
 
 
@@ -416,16 +299,16 @@ plotSlot(OM, Pars, slot='D')
 
 Specified Value(s): <span style='color:blue'> 1, 1</span>
 
-No justification provided.  
+Numbers-based model, not weight-based. 
 
 
 
 
 **b**: Length-weight parameter beta. Single value. Positive real number
 
-Specified Value(s): <span style='color:blue'> 1, 1</span>
+Specified Value(s): <span style='color:blue'> 0, 0</span>
 
-No justification provided.  
+Numbers model - by setting b to zero, each individual's weight = 1, and harvested 'biomass' becomes harvested numbers instead. 
 
 
 
@@ -436,7 +319,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0.5, 0.5</span>
 
-No justification provided.  
+Unknown, default value maintained in the OM.  
 
 
 
@@ -445,7 +328,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0.5, 0.5</span>
 
-No justification provided.  
+Unknown, default value maintained in the OM.  
 
 
 
@@ -454,7 +337,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0.5, 0.5</span>
 
-No justification provided.  
+Unknown, default value maintained in the OM.  
 
 
 
@@ -465,7 +348,11 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0, 0</span>
 
-No justification provided.  
+Unknown, default value maintained in the OM.  
+
+
+
+
 
 
 
@@ -478,7 +365,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 42</span>
 
-No justification provided.  
+Catch-at-age data from compulsory inspections range from 1975 to 2016. 
 
 
 
@@ -487,7 +374,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 1, 1</span>
 
-No justification provided.  
+Unknown, default value maintained in the OM.  
 
 
 
@@ -569,7 +456,7 @@ plotSlot(OM, Pars, slot='qcv')
 
 Specified Value(s): <span style='color:blue'> 75, 75</span>
 
-No justification provided.  
+Length taken from percentile distribution of catch-at-age data from compulsory horn inspections. 
 
 
 
@@ -578,7 +465,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 90, 90</span>
 
-No justification provided.  
+See above. 
 
 
 
@@ -587,7 +474,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 1, 1</span>
 
-No justification provided.  
+At maximum length, vulnerability to hunting is 1.  
 
 
 
@@ -596,7 +483,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0</span>
 
-No justification provided.  
+Default value.  
 
 
 
@@ -612,7 +499,7 @@ plotSlot(OM, Pars, slot='Vmaxlen')
 
 Specified Value(s): <span style='color:blue'> 0, 0</span>
 
-No justification provided.  
+Assume that retention follows selectivity. 
 
 
 
@@ -621,7 +508,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0, 0</span>
 
-No justification provided.  
+Assume that retention follows selectivity.  
 
 
 
@@ -630,7 +517,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 1, 1</span>
 
-No justification provided.  
+Assume that retention follows selectivity.  
 
 
 
@@ -639,7 +526,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0, 0</span>
 
-No justification provided.  
+Assume no discardings (there is little evidence of discarded rams).  
 
 
 
@@ -689,7 +576,6 @@ Slot not used.
 
 Specified Value(s): <span style='color:blue'> 2016</span>
 
-No justification provided.  
 
 
 
@@ -708,7 +594,7 @@ Slot not used.
 
 Specified Value(s): <span style='color:blue'> 0.01, 0.02</span>
 
-No justification provided.  
+Because all hunters must present trophy rams for compulsory inspection, this OM assumes that catches are observed without bias. 
 
 
 
@@ -717,7 +603,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0.01</span>
 
-No justification provided.  
+See above. 
 
 
 
@@ -726,7 +612,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 41, 60</span>
 
-No justification provided.  
+Assumes an average of 50 rams are harvested each year and inspected by governmental agents. 
 
 
 
@@ -735,7 +621,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 41, 60</span>
 
-No justification provided.  
+See above. 
 
 
 
@@ -744,7 +630,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 42, 60</span>
 
-No justification provided.  
+See above. 
 
 
 
@@ -753,7 +639,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 41, 60</span>
 
-No justification provided.  
+See above. 
 
 
 
@@ -764,7 +650,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0.05, 0.1</span>
 
-No justification provided.  
+Default value. 
 
 
 
@@ -773,7 +659,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0.2</span>
 
-No justification provided.  
+Default value, not used. 
 
 
 
@@ -782,7 +668,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0.05, 0.1</span>
 
-No justification provided.  
+Default value. 
 
 
 
@@ -791,7 +677,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0.02, 0.05</span>
 
-No justification provided.  
+Default value. 
 
 
 
@@ -800,7 +686,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 1, 1</span>
 
-No justification provided.  
+Default value. 
 
 
 
@@ -811,7 +697,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0.1</span>
 
-No justification provided.  
+Default value. 
 
 
 
@@ -820,7 +706,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0.1</span>
 
-No justification provided.  
+Default value. 
 
 
 
@@ -829,7 +715,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0.1</span>
 
-No justification provided.  
+Default value. 
 
 
 
@@ -838,7 +724,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0.1</span>
 
-No justification provided.  
+Default value. 
 
 
 
@@ -847,7 +733,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0.1</span>
 
-No justification provided.  
+Default value. 
 
 
 
@@ -858,7 +744,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0.1</span>
 
-No justification provided.  
+Default value. 
 
 
 
@@ -867,7 +753,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0.1</span>
 
-No justification provided.  
+Default value. 
 
 
 
@@ -878,7 +764,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0.4</span>
 
-No justification provided.  
+Default value. 
 
 
 
@@ -887,7 +773,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0.1</span>
 
-No justification provided.  
+Default value. 
 
 
 
@@ -896,7 +782,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0.1</span>
 
-No justification provided.  
+Default value. 
 
 
 
@@ -907,7 +793,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0.5</span>
 
-No justification provided.  
+Default value. 
 
 
 
@@ -916,7 +802,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0.5</span>
 
-No justification provided.  
+Default value. 
 
 
 
@@ -925,7 +811,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0.5</span>
 
-No justification provided.  
+Default value. 
 
 
 
@@ -936,7 +822,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0.5</span>
 
-No justification provided.  
+Default value. 
 
 
 
@@ -945,7 +831,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0.2, 0.4</span>
 
-No justification provided.  
+Default value. 
 
 
 
@@ -956,7 +842,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0.1</span>
 
-No justification provided.  
+Default value. 
 
 
 
@@ -965,7 +851,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0.1, 0.1</span>
 
-No justification provided.  
+Default value. 
 
 
 
@@ -988,7 +874,7 @@ plotObs(OM)
 
 Specified Value(s): <span style='color:blue'> 1, 1</span>
 
-No justification provided.  
+All TAC taken without SD in implementation.  
 
 
 
@@ -997,7 +883,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0.01, 0.02</span>
 
-No justification provided.  
+Default value. 
 
 
 
@@ -1028,7 +914,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 1, 1</span>
 
-No justification provided.  
+Assume that a size limit would be well-implemented. 
 
 
 
@@ -1037,7 +923,7 @@ No justification provided.
 
 Specified Value(s): <span style='color:blue'> 0.01, 0.02</span>
 
-No justification provided.  
+Assume some minor variation in size limits. 
 
 
 
@@ -1060,4 +946,14 @@ plot.OM(out)
 
 
 # References
+
+
+
+
+
+Douhard, M., Festa-Bianchet, M., Pelletier, F., Gaillard, J.M., and Bonenfanti, C. 2016. Changes in horn size of Stone's sheep over four decades correlate with trophy hunting pressure. Ecological Applications 26(1): 309-21.
+
+
+
+Hoefs, M., and Bayer, M. 1983. Demographic characteristics of an unhunted Dall sheep (Ovis dalli dalli) population in southwest Yukon, Canada. Canadian Journal of Zoology 61(6): 1346-1357.
 
