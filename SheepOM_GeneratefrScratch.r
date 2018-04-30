@@ -80,10 +80,8 @@ setwd("~/Documents/UBC/Classes/FISH505/DLMToolProject/selectiveHorns_om3/")
 OMinit('WMU42_StonesSheep_selective_om3')
 stonesSheepOM3 <- XL2OM("WMU42_StonesSheep_selective_om3")
 
-### FIX RMD !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 OMdoc('WMU42_StonesSheep_selective_om3')
 plot(stonesSheepOM3)
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 sheepMSE_om3 <- runMSE(stonesSheepOM3, MPs = mps1, parallel=T)
 
 NOAA_plot(sheepMSE_om3)
@@ -92,14 +90,13 @@ Tplot(sheepMSE_om3)
 
 Converge(sheepMSE_om3) # Converged
 
-
 # OM4a - Selectivity skewed towards younger(A) males ------------------------
 # setwd("~/Documents/UBC/Classes/FISH505/DLMToolProject/")
 # dir.create('selectivityYounger_om4a')
 setwd("~/Documents/UBC/Classes/FISH505/DLMToolProject/selectivityYounger_om4a/")
 
 ### Initialize a blank operating model
-OMinit('WMU42_StonesSheep_selectivityYounger_om4a')
+# OMinit('WMU42_StonesSheep_selectivityYounger_om4a')
 stonesSheepOM4a <- XL2OM("WMU42_StonesSheep_selectivityYounger_om4a")
 plot(stonesSheepOM4a)
 
@@ -116,12 +113,281 @@ setwd("~/Documents/UBC/Classes/FISH505/DLMToolProject/selectivityOlder_om4b/")
 ### Initialize a blank operating model
 # OMinit('WMU42_StonesSheep_selectivityOlder_om4b')
 stonesSheepOM4b <- XL2OM("WMU42_StonesSheep_selectivityOlder_om4b")
-plot(stonesSheepOM4b)
+plot(stonesSheepOM4b) 
 
 OMdoc('WMU42_StonesSheep_selectivityOlder_om4b')
+sheepMSE_om4b <- runMSE(stonesSheepOM4b, MPs = mps1, parallel=T)
+
+# OM5a - Steepness lower than SRA estimate by 1.5x ------------------------
+# setwd("~/Documents/UBC/Classes/FISH505/DLMToolProject/")
+# dir.create('higherSteepness_om5a')
+setwd("~/Documents/UBC/Classes/FISH505/DLMToolProject/higherSteepness_om5a/")
+
+### Initialize a blank operating model
+OMinit('WMU42_StonesSheep_highSteep_om5a')
+stonesSheepOM5a <- XL2OM("WMU42_StonesSheep_highSteep_om5a")
+plot(stonesSheepOM5a)
+
+OMdoc('WMU42_StonesSheep_highSteep_om5a')
+
+sheepMSE_om5a <- runMSE(stonesSheepOM5a, MPs = mps1, parallel=T)
+
+# OM5b - Steepness higher than SRA estimate by 1.5x -----------------------
+# setwd("~/Documents/UBC/Classes/FISH505/DLMToolProject/")
+# dir.create('lowerSteepness_om5b')
+setwd("~/Documents/UBC/Classes/FISH505/DLMToolProject/lowerSteepness_om5b/")
+
+### Initialize a blank operating model
+OMinit('WMU42_StonesSheep_lowSteep_om5b')
+stonesSheepOM5b <- XL2OM("WMU42_StonesSheep_lowSteep_om5b")
+plot(stonesSheepOM5b)
+
+OMdoc('WMU42_StonesSheep_lowSteep_om5b')
+
+sheepMSE_om5b <- runMSE(stonesSheepOM5b, MPs = mps1, parallel=T)
 
 
 
+# The MSE object ----------------------------------------------------------
+
+# sheepMSE_baseOM@B[,,1:50]
+## The MSE object's dimensions are [nsim,mp,nyears]
+biomassOM1 <- data.frame(cbind(sheepMSE_baseOM@MPs,
+                apply(sheepMSE_baseOM@B, 2, mean)
+))
+
+catchOM1_L <- data.frame(cbind(baseL@MPs,
+                               apply(baseL@C, 2, mean)
+))
+
+SSBOM1 <- data.frame(cbind(sheepMSE_baseOM@MPs,
+                             apply(sheepMSE_baseOM@SSB, 2, mean)
+))
+
+paaOM1 <- data.frame(cbind(sheepMSE_baseOM@MPs,
+                           apply(sheepMSE_baseOM@PAA, 2, mean)
+))
+
+x11()
+boxplot(sheepMSE_baseOM@F_FMSY[,7,], xlab="Year", ylab="F/FMSY")
+plotM(base)
+
+stonesSheepOM_length <- stonesSheepOM
+stonesSheepOM_length@b <- 0
+baseL <- runMSE(stonesSheepOM_length, MPs = mps1)
+
+
+# Plotting ----------------------------------------------------------------
+setwd("~/Documents/UBC/Classes/FISH505/DLMToolProject/Figures/")
+
+svg('Tradeoffs_om1_plot1.svg', width=8,height=8)
+par(mfrow=c(1,2))
+Tplot(sheepMSE_baseOM, nam = 'Base-case OM1')
+#Tplot2(sheepMSE_baseOM, nam = '')
+dev.off()
+
+svg('Tradeoffs_om2_plot1.svg', width=8,height=8)
+par(mfrow=c(1,2))
+Tplot(sheepMSE_om2, nam = 'OM2: Periodic recruitment')
+#Tplot2(sheepMSE_om2, nam = '')
+dev.off()
+
+svg('Tradeoffs_om3_plot1.svg', width=8,height=8)
+par(mfrow=c(1,2))
+Tplot(sheepMSE_om3, nam = 'OM3: Gradual reduction in horn length')
+#Tplot2(sheepMSE_om3, nam = '')
+dev.off()
+
+svg('Tradeoffs_om4a_plot1.svg', width=8,height=8)
+par(mfrow=c(1,2))
+Tplot(sheepMSE_om4a, nam = 'OM4a: Hunter selectivity young-biased')
+#Tplot2(sheepMSE_om4a, nam = '')
+dev.off()
+
+svg('Tradeoffs_om4b_plot1.svg', width=8,height=8)
+par(mfrow=c(1,2))
+Tplot(sheepMSE_om4b, nam = 'OM4b: Hunter selectivity old-biased')
+#Tplot2(sheepMSE_om4b, nam = '')
+dev.off()
+
+svg('Tradeoffs_om5a_plot1.svg', width=8,height=8)
+par(mfrow=c(1,2))
+Tplot(sheepMSE_om5a, nam = 'OM5a: Higher steepness')
+# Tplot2(sheepMSE_om5a, nam = '')
+dev.off()
+
+svg('Tradeoffs_om5b_plot1.svg', width=8,height=8)
+par(mfrow=c(2,1))
+Tplot(sheepMSE_om5b, nam = 'OM5b: Lower steepness')
+# Tplot2(sheepMSE_om4b, nam = '')
+dev.off()
+
+
+svg('Tradeoffs_om1_plot2.svg', width=10,height=6)
+#par(mfrow=c(1,2))
+#Tplot(sheepMSE_baseOM, nam = 'Base-case OM1')
+Tplot2(sheepMSE_baseOM, nam = 'Base-case OM1')
+dev.off()
+
+svg('Tradeoffs_om2_plot2.svg', width=10,height=6)
+#par(mfrow=c(1,2))
+#Tplot(sheepMSE_om2, nam = 'OM2: Periodic recruitment')
+Tplot2(sheepMSE_om2, nam = 'OM2: Periodic recruitment')
+dev.off()
+
+svg('Tradeoffs_om3_plot2.svg', width=10,height=6)
+#par(mfrow=c(1,2))
+#Tplot(sheepMSE_om3, nam = 'OM3: Gradual reduction in horn length')
+Tplot2(sheepMSE_om3, nam = 'OM3: Gradual reduction in horn length')
+dev.off()
+
+svg('Tradeoffs_om4a_plot2.svg', width=10,height=6)
+#par(mfrow=c(1,2))
+#Tplot(sheepMSE_om4a, nam = 'OM4a: Hunter selectivity young-biased')
+Tplot2(sheepMSE_om4a, nam = 'OM4a: Hunter selectivity young-biased')
+dev.off()
+
+svg('Tradeoffs_om4b_plot2.svg', width=10,height=6)
+#par(mfrow=c(1,2))
+#Tplot(sheepMSE_om4b, nam = 'OM4b: Hunter selectivity old-biased')
+Tplot2(sheepMSE_om4b, nam = 'OM4b: Hunter selectivity old-biased')
+dev.off()
+
+svg('Tradeoffs_om5a_plot2.svg', width=10,height=6)
+#(mfrow=c(1,2))
+#Tplot(sheepMSE_om5a, nam = 'OM5a: Higher steepness')
+Tplot2(sheepMSE_om5a, nam = 'OM5a: Higher steepness')
+dev.off()
+
+svg('Tradeoffs_om5b_plot2.svg', width=10,height=6)
+#par(mfrow=c(2,1))
+#Tplot(sheepMSE_om4b, nam = 'OM5b: Lower steepness')
+Tplot2(sheepMSE_om5b, nam = 'OM5b: Lower steepness')
+dev.off()
+
+# Performance metrics -----------------------------------------------------
+setwd("~/Documents/UBC/Classes/FISH505/DLMToolProject/")
+dir.create('PerformanceMetrics')
+setwd('PerformanceMetrics/')
+
+pm <- c('STY','LTY','Yield','P10','P100','AAVY')
+
+### PMs for OM1
+om1_pmDF <- data.frame(metric=pm,
+                       AvC=NaN,
+                       NFref=NaN,
+                       matlenlim=NaN,
+                       CompSRA=NaN,
+                       Fdem=NaN,
+                       Ltarget4=NaN,
+                       slotlim=NaN)
+
+for(i in 1:nrow(om1_pmDF)){
+  om1_pmDF[i,2:ncol(om1_pmDF)] <- eval(parse(text=paste0(pm[i],'(sheepMSE_baseOM)')))@Mean
+}
+write.csv(om1_pmDF, 'OM1_BuiltinPerformanceMetrics.csv', row.names = F)
+
+### PMs for OM2
+om2_pmDF <- data.frame(metric=pm,
+                       AvC=NaN,
+                       NFref=NaN,
+                       matlenlim=NaN,
+                       CompSRA=NaN,
+                       Fdem=NaN,
+                       Ltarget4=NaN,
+                       slotlim=NaN)
+
+for(i in 1:nrow(om2_pmDF)){
+  om2_pmDF[i,2:ncol(om2_pmDF)] <- eval(parse(text=paste0(pm[i],'(sheepMSE_om2)')))@Mean
+}
+write.csv(om2_pmDF, 'om2_BuiltinPerformanceMetrics.csv', row.names = F)
+
+
+### PMs for OM2
+om3_pmDF <- data.frame(metric=pm,
+                       AvC=NaN,
+                       NFref=NaN,
+                       matlenlim=NaN,
+                       CompSRA=NaN,
+                       Fdem=NaN,
+                       Ltarget4=NaN,
+                       slotlim=NaN)
+
+for(i in 1:nrow(om3_pmDF)){
+  om3_pmDF[i,2:ncol(om3_pmDF)] <- eval(parse(text=paste0(pm[i],'(sheepMSE_om3)')))@Mean
+}
+write.csv(om3_pmDF, 'om3_BuiltinPerformanceMetrics.csv', row.names = F)
+
+### OM4ab
+om4a_pmDF <- data.frame(metric=pm,
+                       AvC=NaN,
+                       NFref=NaN,
+                       matlenlim=NaN,
+                       CompSRA=NaN,
+                       Fdem=NaN,
+                       Ltarget4=NaN,
+                       slotlim=NaN)
+
+for(i in 1:nrow(om4a_pmDF)){
+  om4a_pmDF[i,2:ncol(om4a_pmDF)] <- eval(parse(text=paste0(pm[i],'(sheepMSE_om4a)')))@Mean
+}
+write.csv(om4a_pmDF, 'om4a_BuiltinPerformanceMetrics.csv', row.names = F)
+
+
+### OM4b
+om4b_pmDF <- data.frame(metric=pm,
+                        AvC=NaN,
+                        NFref=NaN,
+                        matlenlim=NaN,
+                        CompSRA=NaN,
+                        Fdem=NaN,
+                        Ltarget4=NaN,
+                        slotlim=NaN)
+
+for(i in 1:nrow(om4b_pmDF)){
+  om4b_pmDF[i,2:ncol(om4b_pmDF)] <- eval(parse(text=paste0(pm[i],'(sheepMSE_om4b)')))@Mean
+}
+write.csv(om4b_pmDF, 'om4b_BuiltinPerformanceMetrics.csv', row.names = F)
+
+
+### om5ab
+om5a_pmDF <- data.frame(metric=pm,
+                        AvC=NaN,
+                        NFref=NaN,
+                        matlenlim=NaN,
+                        CompSRA=NaN,
+                        Fdem=NaN,
+                        Ltarget4=NaN,
+                        slotlim=NaN)
+
+for(i in 1:nrow(om5a_pmDF)){
+  om5a_pmDF[i,2:ncol(om5a_pmDF)] <- eval(parse(text=paste0(pm[i],'(sheepMSE_om5a)')))@Mean
+}
+write.csv(om5a_pmDF, 'om5a_BuiltinPerformanceMetrics.csv', row.names = F)
+
+
+### om5b
+om5b_pmDF <- data.frame(metric=pm,
+                        AvC=NaN,
+                        NFref=NaN,
+                        matlenlim=NaN,
+                        CompSRA=NaN,
+                        Fdem=NaN,
+                        Ltarget4=NaN,
+                        slotlim=NaN)
+
+for(i in 1:nrow(om5b_pmDF)){
+  om5b_pmDF[i,2:ncol(om5b_pmDF)] <- eval(parse(text=paste0(pm[i],'(sheepMSE_om5b)')))@Mean
+}
+write.csv(om5b_pmDF, 'om5b_BuiltinPerformanceMetrics.csv', row.names = F)
+
+# AAVY: Probability AAVY < 0.2
+# LTY: Probability Long-Term Yield > 0.5 Relative Yield
+# STY: Probability Short-Term Yield > 0.5 Relative Yield
+# P10: B > 0.1 BMSY
+# P50: B > 0.5 BMSY
+# P100: B > BMSY
+# Yield: Average Yield
 
 # List of available MPs and descriptions ----------------------------------
 
