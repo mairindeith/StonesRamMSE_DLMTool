@@ -1,5 +1,5 @@
 
-## Stone`s sheep in WMU7-42 (Peace Region of British Columbia, Canada): a Data-Limited Methods Toolkit case study for terrestrial mammal harvests
+## Stones sheep in WMU7-42 (Peace Region of British Columbia, Canada): a Data-Limited Methods Toolkit case study for terrestrial mammal harvests
 
 ### Term project for Murdoch McAllister`s FISH 505 Graduate Course at the Unversity of British Columbia, Spring 2018
 
@@ -8,6 +8,7 @@ Mairin Deith, University of British Columbia
 mdeith@zoology.ubc.ca
 
 [See full description on the case study page of the DLMTool website here.](http://www.datalimitedtoolkit.org/Case_Studies_Table/Stones_Sheep_BC/WMU42_StonesSheep.html)
+This webpage includes images that describe the operating models (OMs) and the estimates of historical recruitment, harvest mortality rate, annual catches, and other estimated parameters.
 
 ## Introduction
 This MSE was built to explore the applicability of traditional fisheries assessments (specifically management strategy evaluation, MSE) to terrestrial ungulate harvests. Stones sheep, a subspecies of thinhorn sheep (*Ovis dalli stonei*), are subject to a male-only trophy harvest based on horn length. In British Colubmia, only sexually mature males with fully curled horns can be harvested legally during the open season (from August to mid-October).
