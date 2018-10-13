@@ -1,0 +1,46 @@
+
+## Stone`s sheep in WMU7-42 (Peace Region of British Columbia, Canada): a Data-Limited Methods Toolkit case study for terrestrial mammal harvests
+
+### Term project for Murdoch McAllister`s FISH 505 Graduate Course at the Unversity of British Columbia, Spring 2018
+
+### Author(s)
+Mairin Deith, University of British Columbia
+mdeith@zoology.ubc.ca
+
+## Introduction
+This MSE was built to explore the applicability of traditional fisheries assessments to terrestrial ungulate harvests. Stones sheep, a subspecies of thinhorn sheep (*Ovis dalli stonei*), are subject to a male-only trophy harvest based on horn length. In British Colubmia, only sexually mature males with fully curled horns can be harvested legally during the open season (from August to mid-October).
+
+![*Curl of the Stone's sheep horn as an indicator of maturity and legal status. Image from the Ministry of Forests, Lands and Natural Resource Operations, British Columbia.*](FullCurlSpecification.png)
+
+Hunted rams are subject to compulsory inspections by Conservation Officers in the province. Therefore the primary data source used to specify this operating model came from records of the compulsory inspections, which list the age, horn size, and other characteristics of each ram that was legally harvested. These catch-at-age data were used to inform a stock reduction analysis (SRA) that estimated a number of parameters specified in this operating model (i.e. R0, h, and D). Airbourne counts of Stone's sheep in this region were conducted in 1994, 2002, 2007, and 2012, and these population estimates were also incorporated in this model (data available upon request from British Columbia's Ministry of Forests, Lands, and Natural Resource Operations).
+
+The remaining parameters, particularly those regarding horn growth patterns and natural mortality rates, were taken from existing literature on hunted and unhunted populations of Stone's sheep.
+
+### Numbers based model
+Unlike conventional fisheries models, ram harvests are numbers-based rather than biomass-based. Therefore the weight of all males is equal to 1 in this analysis, and harvested biomass can be considered synonymous to the number of hunted rams.
+
+Similar to fish-based MSEs, this analysis also considers length and growth with age. However, rather than modeling changes to body length over time, this model calculates asymptotic increases to horn size over time. Maturity at length and hunter selectivity at length are therefore based on horn size at age.   
+
+The major uncertainty in this analysis is recruitment patterns. As trophy hunting is restricted to fully matured males, it is unclear if any of the population's reproductive capacity is reduced by male removals. It is believed that even if all legal males are harvested from the population, younger males would still be able to impregnate all ewes (Ian Hatter, personal communication). However, rampant male harvests can lead to population collapse in ungulates if the proportion of males in the population drop below some critical threshold (Milner-Gulland et al. 2003). At this time, it is unclear what this threshold may be for Stone's rams. This analysis assumes a Beverton-Holt recruitment pattern with high steepness to reflect the weak link between male numbers and reproduction.   
+
+**Robustness tests:**
+**Robustness OM2**: Recruitment follows a 10-year periodic cycling (similar to decadal cycles seen in other North American species)
+
+**Robustness OM3**: Artificial selection as a result of hunting pressure has caused a gradual reduction in early horn growth (as per Douhard et al. 2016)
+
+**Robustness OM4a**: True hunter selectivity at age is biased towards younger/shorter-horned males than seen historically
+
+**Robustness OM4b**: True hunter selectivity at age is biased towards older/larger-horned males than seen historically
+
+**Robustness OM5a**: Recruitment compensation is steeper (higher bounds for h)
+
+**Robustness OM5b**: Recruitment compensation is less steep (lower bounds for h)
+
+
+# References
+
+Douhard, M., Festa-Bianchet, M., Pelletier, F., Gaillard, J.M., and Bonenfanti, C. 2016. Changes in horn size of Stone's sheep over four decades correlate with trophy hunting pressure. Ecological Applications 26(1): 309-21.
+
+Hoefs, M., and Bayer, M. 1983. Demographic characteristics of an unhunted Dall sheep (Ovis dalli dalli) population in southwest Yukon, Canada. Canadian Journal of Zoology 61(6): 1346-1357.
+
+Milner-Gulland, E.J., Bukreevea, O.M., Coulson, T., Lushchekina, A.A., Kholodova, M.V., Bekenov, A.B., and Grachev, I.A. 2003. Conservation - Reproductive collapse in saiga antelope harems. Nature 422: 135.
