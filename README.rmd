@@ -7,10 +7,12 @@
 Mairin Deith, University of British Columbia
 mdeith@zoology.ubc.ca
 
-## Introduction
-This MSE was built to explore the applicability of traditional fisheries assessments to terrestrial ungulate harvests. Stones sheep, a subspecies of thinhorn sheep (*Ovis dalli stonei*), are subject to a male-only trophy harvest based on horn length. In British Colubmia, only sexually mature males with fully curled horns can be harvested legally during the open season (from August to mid-October).
+[See full description on the case study page of the DLMTool website here.](http://www.datalimitedtoolkit.org/Case_Studies_Table/Stones_Sheep_BC/WMU42_StonesSheep.html)
 
-![*Curl of the Stone's sheep horn as an indicator of maturity and legal status. Image from the Ministry of Forests, Lands and Natural Resource Operations, British Columbia.*](FullCurlSpecification.png)
+## Introduction
+This MSE was built to explore the applicability of traditional fisheries assessments (specifically management strategy evaluation, MSE) to terrestrial ungulate harvests. Stones sheep, a subspecies of thinhorn sheep (*Ovis dalli stonei*), are subject to a male-only trophy harvest based on horn length. In British Colubmia, only sexually mature males with fully curled horns can be harvested legally during the open season (from August to mid-October).
+
+![*Curl of the Stone's sheep horn as an indicator of maturity and legal status. Image from the Ministry of Forests, Lands and Natural Resource Operations, British Columbia.*](https://github.com/mairindeith/StonesRamMSE_DLMTool/FullCurlSpecification.png)
 
 Hunted rams are subject to compulsory inspections by Conservation Officers in the province. Therefore the primary data source used to specify this operating model came from records of the compulsory inspections, which list the age, horn size, and other characteristics of each ram that was legally harvested. These catch-at-age data were used to inform a stock reduction analysis (SRA) that estimated a number of parameters specified in this operating model (i.e. R0, h, and D). Airbourne counts of Stone's sheep in this region were conducted in 1994, 2002, 2007, and 2012, and these population estimates were also incorporated in this model (data available upon request from British Columbia's Ministry of Forests, Lands, and Natural Resource Operations).
 
