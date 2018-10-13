@@ -1,0 +1,311 @@
+
+# Title
+Stones Sheep in the Peace Region (OM3)
+
+# Subtitle
+Stress-test OM that models gradual reductions in horn length due to selective harvesting pressure.
+
+# Author(s)
+Mairin Deith, mairin.deith@gmail.com
+
+# Date
+
+# Introduction
+
+## Numbers based model
+This operating model was specified to explore the biological and harvest outcomes of alternative size- and effort-based management procedures in WMU 742 in the Peace Region of British Columbia. 
+
+# Stock Parameters
+
+## Common_Name
+Stone's sheep 
+
+## maxage
+16, from the maximum age of horns identified during compulsory inspections.
+
+## R0
+Value taken from SRA estimates of recruitment at unharvested levels.
+
+## M
+Age-specific mortality from Hoefs and Bayer, 1983.
+
+## M2
+The same values for M, but increased slightly (by 0.01, as per the gray seal example).  
+
+## Mexp
+Slot not used.
+
+## Msd
+Assumes low variability in natural mortality between years. 
+
+## Mgrad
+No gradual changes in natural mortality expected.
+
+## h
+Value taken from SRA estimates of Beverton-Holt steepness. 
+
+## SRrel
+Beverton-Holt relationship chosen (1) instead of the Ricker relationship (2).
+
+## Perr
+Indicates very low interannual variability in recruitment
+
+## AC
+Value calculated from the lag-1 autocorrelation of recruits in the historical time series.
+
+## Period
+No periodic changes in recruitment; implemented in stress-case OM2.
+
+## Amplitude
+Same as above.
+
+## Linf
+Numbers taken from distribution of horn lengths at age (in cm) from trophy horns, which were used to calculate a von Bertalaffy growth curve for ram horns.
+
+## K
+From the von Bertalaffy model.
+
+## t0
+From the von Bertalaffy model. 
+
+## LenCV
+From the von Bertalaffy model. 
+
+## Ksd
+Unknown, default value maintained in the OM. 
+
+## Kgrad
+Selective pressures reduce average horn size (as per Douhard et al. 2016). 
+
+## Linfsd
+Unknown, default value maintained in the OM. 
+
+## Linfgrad
+No persistent change in Linfgrad; implemented in stress-case OM3 where selective pressures reduce average horn size (as per Douhard et al. 2016). 
+
+## L50
+Horn length at 50% maturity is between 3/4 and full curl males (who are typically legal to hunt if their horns are >90cm). 
+Stress-case OMs 4a and 4b investigates an alternative selectivity curves.
+
+## L50_95
+The rate of horn growth decelerates with age, and little horn growth distinguishes males at 50% maturity with those 95% vulnerable.  
+
+## D
+Value from SRA, which indicated the stock to be at 71% of unharvested levels.
+
+## a
+Numbers-based model, not weight-based.
+
+## b
+Numbers model - by setting b to zero, each individual's weight = 1, and harvested 'biomass' becomes harvested numbers instead.
+
+## Size_area_1
+Unknown, default value maintained in the OM. 
+
+## Frac_area_1
+Unknown, default value maintained in the OM. 
+
+## Prob_staying
+Unknown, default value maintained in the OM. 
+
+## Fdisc
+Unknown, default value maintained in the OM. 
+
+
+
+# Fleet Parameters
+
+## nyears
+Catch-at-age data from compulsory inspections range from 1975 to 2016.
+
+## Spat_targ
+Unknown, default value maintained in the OM. 
+
+## EffYears
+No justification provided. 
+
+## EffLower
+No justification provided. 
+
+## EffUpper
+No justification provided. 
+
+## Esd
+No justification provided. 
+
+## qinc
+No justification provided. 
+
+## qcv
+No justification provided. 
+
+## L5
+Length taken from percentile distribution of catch-at-age data from compulsory horn inspections.
+
+## LFS
+See above.
+
+## Vmaxlen
+At maximum length, vulnerability to hunting is 1. 
+
+## isRel
+Default value. 
+
+## LR5
+Assume that retention follows selectivity.
+
+## LFR
+Assume that retention follows selectivity. 
+
+## Rmaxlen
+Assume that retention follows selectivity. 
+
+## DR
+Assume no discardings (there is little evidence of discarded rams). 
+
+## SelYears
+Slot not used.
+
+## AbsSelYears
+Slot not used.
+
+## L5Lower
+Slot not used.
+
+## L5Upper
+Slot not used.
+
+## LFSLower
+Slot not used.
+
+## LFSUpper
+Slot not used.
+
+## VmaxLower
+Slot not used.
+
+## VmaxUpper
+
+## CurrentYr
+
+## MPA
+Slot not used.
+
+
+
+# Obs Parameters
+
+## Cobs
+Because all hunters must present trophy rams for compulsory inspection, this OM assumes that catches are observed without bias.
+
+## Cbiascv
+See above.
+
+## CAA_nsamp
+Assumes an average of 50 rams are harvested each year and inspected by governmental agents.
+
+## CAA_ESS
+See above.
+
+## CAL_nsamp
+See above.
+
+## CAL_ESS
+See above.
+
+## Iobs
+Default value.
+
+## Ibiascv
+Default value, not used.
+
+## Btobs
+Default value.
+
+## Btbiascv
+Default value.
+
+## beta
+Default value.
+
+## LenMbiascv
+Default value.
+
+## Mbiascv
+Default value.
+
+## Kbiascv
+Default value.
+
+## t0biascv
+Default value.
+
+## Linfbiascv
+Default value.
+
+## LFCbiascv
+Default value.
+
+## LFSbiascv
+Default value.
+
+## FMSYbiascv
+Default value.
+
+## FMSY_Mbiascv
+Default value.
+
+## BMSY_B0biascv
+Default value.
+
+## Irefbiascv
+Default value.
+
+## Brefbiascv
+Default value.
+
+## Crefbiascv
+Default value.
+
+## Dbiascv
+Default value.
+
+## Dobs
+Default value.
+
+## hbiascv
+Default value.
+
+## Recbiascv
+Default value.
+
+
+
+# Imp Parameters
+
+## TACFrac
+All TAC taken without SD in implementation. 
+
+## TACSD
+Default value.
+
+## TAEFrac
+No justification provided. 
+
+## TAESD
+No justification provided. 
+
+## SizeLimFrac
+Assume that a size limit would be well-implemented.
+
+## SizeLimSD
+Assume some minor variation in size limits.
+
+
+
+# References
+
+
+Douhard, M., Festa-Bianchet, M., Pelletier, F., Gaillard, J.M., and Bonenfanti, C. 2016. Changes in horn size of Stone's sheep over four decades correlate with trophy hunting pressure. Ecological Applications 26(1): 309-21.
+
+Hoefs, M., and Bayer, M. 1983. Demographic characteristics of an unhunted Dall sheep (Ovis dalli dalli) population in southwest Yukon, Canada. Canadian Journal of Zoology 61(6): 1346-1357.

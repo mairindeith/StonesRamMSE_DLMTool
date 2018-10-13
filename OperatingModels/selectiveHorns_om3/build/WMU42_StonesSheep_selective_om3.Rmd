@@ -1,0 +1,959 @@
+---
+title: 'Stones Sheep in the Peace Region (OM3)'
+subtitle: 'Stress-test OM that models gradual reductions in horn length due to selective harvesting pressure.'
+author: Mairin Deith, mairin.deith@gmail.com
+date: 
+output: 
+   html_document:
+     toc: true
+     toc_depth: 3
+     toc_float: true
+     theme: flatly
+---
+
+# Introduction
+
+
+
+## Numbers based model
+
+This operating model was specified to explore the biological and harvest outcomes of alternative size- and effort-based management procedures in WMU 742 in the Peace Region of British Columbia. 
+
+
+
+# Operating Model 
+## OM Parameters 
+**OM Name**: Name of the operating model: <span style='color:blue'> StonesSheep_WMU42</span>
+
+**nsim**: The number of simulations: <span style='color:blue'> 200</span>
+
+
+
+**proyears**: The number of projected years: <span style='color:blue'> 50</span>
+
+
+
+
+
+**interval**: The assessment interval - how often would you like to update the management system? <span style='color:blue'> 4</span>
+
+**pstar**: The percentile of the sample of the management recommendation for each method: <span style='color:blue'> 0.5</span>
+
+**maxF**: Maximum instantaneous fishing mortality rate that may be simulated for any given age class: <span style='color:blue'> 0.8</span>
+
+**reps**: Number of samples of the management recommendation for each method. Note that when this is set to 1, the mean value of the data inputs is used. <span style='color:blue'> 1</span>
+
+**Source**: A reference to a website or article from which parameters were taken to define the operating model
+
+<span style='color:blue'> SRA and literature review</span>
+
+# Stock Parameters 
+
+### Mortality and age:  maxage, R0, M, M2, Mexp, Msd, Mgrad
+
+**maxage**: The maximum age of individuals that is simulated (there is no plus group ). Single value. Positive integer
+
+Specified Value(s): <span style='color:blue'> 16, 16</span>
+
+16, from the maximum age of horns identified during compulsory inspections. 
+
+
+
+
+**R0**: The magnitude of unfished recruitment. Single value. Positive real number
+
+Specified Value(s): <span style='color:blue'> 294.05, 294.05</span>
+
+Value taken from SRA estimates of recruitment at unharvested levels. 
+
+
+
+
+**M**: Natural mortality rate. Uniform distribution lower and upper bounds. Positive real number
+
+Specified Value(s): <span style='color:blue'> 0.53, 0.61</span>
+
+Age-specific mortality from Hoefs and Bayer, 1983. 
+
+
+
+
+**M2**: (Optional) Natural mortality rate at age. Vector of length maxage . Positive real number
+
+Specified Value(s): <span style='color:blue'> 0.55, 0.08, 0.04, 0.05, 0.06, 0.07, 0.11, 0.16, 0.27, 0.42, 0.78, 1.21, 1.21, 1.21, 1.21, 1.21</span>
+
+The same values for M, but increased slightly (by 0.01, as per the gray seal example).   
+
+
+
+
+**Mexp**: Exponent of the Lorenzen function assuming an inverse relationship between M and weight. Uniform distribution lower and upper bounds. Real numbers <= 0.
+
+Specified Value(s): <span style='color:blue'> 0, 0</span>
+
+Slot not used. 
+
+
+
+
+**Msd**: Inter-annual variability in natural mortality rate expressed as a coefficient of variation. Uniform distribution lower and upper bounds. Non-negative real numbers
+
+Specified Value(s): <span style='color:blue'> 0.06, 0.15</span>
+
+Assumes low variability in natural mortality between years.  
+
+
+
+
+**Mgrad**: Mean temporal trend in natural mortality rate, expressed as a percentage change in M per year. Uniform distribution lower and upper bounds. Real numbers
+
+Specified Value(s): <span style='color:blue'> 0, 0</span>
+
+No gradual changes in natural mortality expected. 
+
+
+
+
+```{r plot.M, echo=FALSE, fig.asp=1.5}
+plotSlot(OM, Pars, slot='M')
+```
+
+
+### Recruitment: h, SRrel, Perr, AC
+
+**h**: Steepness of the stock recruit relationship. Uniform distribution lower and upper bounds. Values from 1/5 to 1
+
+Specified Value(s): <span style='color:blue'> 0.75, 0.9</span>
+
+Value taken from SRA estimates of Beverton-Holt steepness.  
+
+
+
+
+**SRrel**: Type of stock-recruit relationship. Single value, switch (1) Beverton-Holt (2) Ricker. Integer
+
+Specified Value(s): <span style='color:blue'> 1, 1</span>
+
+Beverton-Holt relationship chosen (1) instead of the Ricker relationship (2). 
+
+
+
+
+**Perr**: Process error, the CV of lognormal recruitment deviations. Uniform distribution lower and upper bounds. Non-negative real numbers
+
+Specified Value(s): <span style='color:blue'> 0.94, 1.06</span>
+
+Indicates very low interannual variability in recruitment 
+
+
+
+
+**AC**: Autocorrelation in recruitment deviations rec(t)=AC*rec(t-1)+(1-AC)*sigma(t). Uniform distribution lower and upper bounds. Non-negative real numbers
+
+Specified Value(s): <span style='color:blue'> 0.26, 0.63</span>
+
+Value calculated from the lag-1 autocorrelation of recruits in the historical time series. 
+
+
+
+
+```{r plot.h, echo=FALSE, fig.asp=1}
+plotSlot(OM, Pars, slot='h')
+```
+
+
+### Non-stationarity in stock productivity: Period, Amplitude
+
+**Period**: (Optional) Period for cyclical recruitment pattern in years. Uniform distribution lower and upper bounds. Non-negative real numbers
+
+Slot not used.
+
+**Amplitude**: (Optional) Amplitude in deviation from long-term average recruitment during recruitment cycle (eg a range from 0 to 1 means recruitment decreases or increases by up to 100% each cycle). Uniform distribution lower and upper bounds. 0 < Amplitude < 1
+
+Slot not used.
+
+### Growth: Linf, K, t0, LenCV, Ksd, Kgrad, Linfsd, Linfgrad
+
+**Linf**: Maximum length. Uniform distribution lower and upper bounds. Positive real numbers
+
+Specified Value(s): <span style='color:blue'> 100.13, 133.54</span>
+
+Numbers taken from distribution of horn lengths at age (in cm) from trophy horns, which were used to calculate a von Bertalaffy growth curve for ram horns. 
+
+
+
+
+**K**: von Bertalanffy growth parameter k. Uniform distribution lower and upper bounds. Positive real numbers
+
+Specified Value(s): <span style='color:blue'> 0.33, 0.42</span>
+
+From the von Bertalaffy model. 
+
+
+
+
+**t0**: von Bertalanffy theoretical age at length zero. Uniform distribution lower and upper bounds. Non-positive real numbers
+
+Specified Value(s): <span style='color:blue'> -0.1, 0.09</span>
+
+From the von Bertalaffy model.  
+
+
+
+
+**LenCV**: Coefficient of variation of length-at-age (assumed constant for all age classes). Uniform distribution lower and upper bounds. Positive real numbers
+
+Specified Value(s): <span style='color:blue'> 0.1, 0.12</span>
+
+From the von Bertalaffy model.  
+
+
+
+
+**Ksd**: Inter-annual variability in growth parameter k. Uniform distribution lower and upper bounds. Non-negative real numbers
+
+Specified Value(s): <span style='color:blue'> 0, 0</span>
+
+Unknown, default value maintained in the OM.  
+
+
+
+
+**Kgrad**: Mean temporal trend in growth parameter k, expressed as a percentage change in k per year. Uniform distribution lower and upper bounds. Real numbers
+
+Specified Value(s): <span style='color:blue'> -0.05, -0.03</span>
+
+Selective pressures reduce average horn size (as per Douhard et al. 2016).  
+
+
+
+
+**Linfsd**: Inter-annual variability in maximum length. Uniform distribution lower and upper bounds. Non-negative real numbers
+
+Specified Value(s): <span style='color:blue'> 0, 0</span>
+
+Unknown, default value maintained in the OM.  
+
+
+
+
+**Linfgrad**: Mean temporal trend in maximum length, expressed as a percentage change in Linf per year. Uniform distribution lower and upper bounds. Real numbers
+
+Specified Value(s): <span style='color:blue'> 0, 0</span>
+
+No persistent change in Linfgrad; implemented in stress-case OM3 where selective pressures reduce average horn size (as per Douhard et al. 2016).  
+
+
+
+
+```{r plot.Linf, echo=FALSE, fig.asp=1.5}
+plotSlot(OM, Pars, slot='Linf')
+```
+
+
+### Maturity: L50, L50_95
+
+**L50**: Length at 50 percent maturity. Uniform distribution lower and upper bounds. Positive real numbers
+
+Specified Value(s): <span style='color:blue'> 65.09, 79.83</span>
+
+Horn length at 50% maturity is between 3/4 and full curl males (who are typically legal to hunt if their horns are >90cm).  
+Stress-case OMs 4a and 4b investigates an alternative selectivity curves. 
+
+
+
+
+**L50_95**: Length increment from 50 percent to 95 percent maturity. Uniform distribution lower and upper bounds. Positive real numbers
+
+Specified Value(s): <span style='color:blue'> 10.03, 29.62</span>
+
+The rate of horn growth decelerates with age, and little horn growth distinguishes males at 50% maturity with those 95% vulnerable.   
+
+
+
+
+```{r plot.L50, echo=FALSE, fig.asp=1}
+plotSlot(OM, Pars, slot='L50')
+```
+
+
+### Stock depletion: D
+
+**D**: Current level of stock depletion SSB(current)/SSB(unfished). Uniform distribution lower and upper bounds. Fraction
+
+Specified Value(s): <span style='color:blue'> 0.65, 0.75</span>
+
+Value from SRA, which indicated the stock to be at 71% of unharvested levels. 
+
+
+
+
+```{r plot.D, echo=FALSE, fig.asp=0.5}
+plotSlot(OM, Pars, slot='D')
+```
+
+
+### Length-weight conversion parameters: a, b
+
+**a**: Length-weight parameter alpha. Single value. Positive real number
+
+Specified Value(s): <span style='color:blue'> 1, 1</span>
+
+Numbers-based model, not weight-based. 
+
+
+
+
+**b**: Length-weight parameter beta. Single value. Positive real number
+
+Specified Value(s): <span style='color:blue'> 0, 0</span>
+
+Numbers model - by setting b to zero, each individual's weight = 1, and harvested 'biomass' becomes harvested numbers instead. 
+
+
+
+
+### Spatial distribution and movement: Size_area_1, Frac_area_1, Prob_staying
+
+**Size_area_1**: The size of area 1 relative to area 2. Uniform distribution lower and upper bounds. Positive real numbers
+
+Specified Value(s): <span style='color:blue'> 0.5, 0.5</span>
+
+Unknown, default value maintained in the OM.  
+
+
+
+
+**Frac_area_1**: The fraction of the unfished biomass in stock 1. Uniform distribution lower and upper bounds. Positive real numbers
+
+Specified Value(s): <span style='color:blue'> 0.5, 0.5</span>
+
+Unknown, default value maintained in the OM.  
+
+
+
+
+**Prob_staying**: The probability of inviduals in area 1 remaining in area 1 over the course of one year. Uniform distribution lower and upper bounds. Positive fraction.
+
+Specified Value(s): <span style='color:blue'> 0.5, 0.5</span>
+
+Unknown, default value maintained in the OM.  
+
+
+
+
+### Discard Mortality: Fdisc 
+
+**Fdisc**: Fraction of discarded fish that die. Uniform distribution lower and upper bounds. Non-negative real numbers
+
+Specified Value(s): <span style='color:blue'> 0, 0</span>
+
+Unknown, default value maintained in the OM.  
+
+
+
+
+
+
+
+
+# Fleet Parameters 
+
+### Historical years of fishing, spatial targeting: nyears, Spat_targ
+
+**nyears**: The number of years for the historical spool-up simulation. Single value. Positive integer
+
+Specified Value(s): <span style='color:blue'> 42</span>
+
+Catch-at-age data from compulsory inspections range from 1975 to 2016. 
+
+
+
+
+**Spat_targ**: Distribution of fishing in relation to spatial biomass: fishing distribution is proportional to B^Spat_targ. Uniform distribution lower and upper bounds. Real numbers
+
+Specified Value(s): <span style='color:blue'> 1, 1</span>
+
+Unknown, default value maintained in the OM.  
+
+
+
+
+### Trend in historical fishing effort (exploitation rate), interannual variability in fishing effort: EffYears, EffLower, EffUpper, Esd
+
+**EffYears**: Years representing join-points (vertices) of time-varying effort. Vector. Non-negative real numbers
+
+No justification provided.  
+
+
+
+
+**EffLower**: Lower bound on relative effort corresponding to EffYears. Vector. Non-negative real numbers
+
+No justification provided.  
+
+
+
+
+**EffUpper**: Upper bound on relative effort corresponding to EffYears. Vector. Non-negative real numbers
+
+No justification provided.  
+
+
+
+
+<style type='text/css'>
+.table {
+    width: 75%; 
+}
+</style>
+```{r, echo=FALSE, results='asis'}
+knitr::kable(round(Effvals,2), format='markdown', caption='')
+```
+
+**Esd**: Additional inter-annual variability in fishing mortality rate. Uniform distribution lower and upper bounds. Non-negative real numbers
+
+Specified Value(s): <span style='color:blue'> 0, 0</span>
+
+No justification provided.  
+
+
+
+
+```{r plot.EffUpper, echo=FALSE, fig.asp=0.5}
+plotSlot(OM, Pars, slot='EffUpper')
+```
+
+
+### Annual increase in catchability, interannual variability in catchability: qinc, qcv
+
+**qinc**: Average percentage change in fishing efficiency (applicable only to forward projection and input controls). Uniform distribution lower and upper bounds. Non-negative real numbers
+
+Specified Value(s): <span style='color:blue'> 0, 0</span>
+
+No justification provided.  
+
+
+
+
+**qcv**: Inter-annual variability in fishing efficiency (applicable only to forward projection and input controls). Uniform distribution lower and upper bounds. Non-negative real numbers
+
+Specified Value(s): <span style='color:blue'> 0, 0</span>
+
+No justification provided.  
+
+
+
+
+```{r plot.qcv, echo=FALSE, fig.asp=1}
+plotSlot(OM, Pars, slot='qcv')
+```
+
+
+### Fishery gear length selectivity: L5, LFS, Vmaxlen, isRel
+
+**L5**: Shortest length corresponding to 5 percent vulnerability. Uniform distribution lower and upper bounds. Positive real numbers
+
+Specified Value(s): <span style='color:blue'> 75, 75</span>
+
+Length taken from percentile distribution of catch-at-age data from compulsory horn inspections. 
+
+
+
+
+**LFS**: Shortest length that is fully vulnerable to fishing. Uniform distribution lower and upper bounds. Positive real numbers
+
+Specified Value(s): <span style='color:blue'> 90, 90</span>
+
+See above. 
+
+
+
+
+**Vmaxlen**: The vulnerability of fish at Stock@Linf. Uniform distribution lower and upper bounds. Fraction
+
+Specified Value(s): <span style='color:blue'> 1, 1</span>
+
+At maximum length, vulnerability to hunting is 1.  
+
+
+
+
+**isRel**: Selectivity parameters in units of size-of-maturity (or absolute eg cm). Single value. Boolean.
+
+Specified Value(s): <span style='color:blue'> 0</span>
+
+Default value.  
+
+
+
+
+```{r plot.Vmaxlen, echo=FALSE, fig.asp=1}
+plotSlot(OM, Pars, slot='Vmaxlen')
+```
+
+
+### Fishery length retention: LR5, LFR, Rmaxlen, DR
+
+**LR5**: Shortest length corresponding ot 5 percent retention. Uniform distribution lower and upper bounds. Non-negative real numbers
+
+Specified Value(s): <span style='color:blue'> 0, 0</span>
+
+Assume that retention follows selectivity. 
+
+
+
+
+**LFR**: Shortest length that is fully retained. Uniform distribution lower and upper bounds. Non-negative real numbers
+
+Specified Value(s): <span style='color:blue'> 0, 0</span>
+
+Assume that retention follows selectivity.  
+
+
+
+
+**Rmaxlen**: The retention of fish at Stock@Linf. Uniform distribution lower and upper bounds. Non-negative real numbers
+
+Specified Value(s): <span style='color:blue'> 1, 1</span>
+
+Assume that retention follows selectivity.  
+
+
+
+
+**DR**: Discard rate - the fraction of caught fish that are discarded. Uniform distribution lower and upper bounds. Fraction
+
+Specified Value(s): <span style='color:blue'> 0, 0</span>
+
+Assume no discardings (there is little evidence of discarded rams).  
+
+
+
+
+```{r plot.DR, echo=FALSE, fig.asp=0.75}
+plotSlot(OM, Pars, slot='DR')
+```
+
+
+### Time-varying selectivity: SelYears, AbsSelYears, L5Lower, L5Upper, LFSLower, LFSUpper, VmaxLower, VmaxUpper
+
+**SelYears**: (Optional) Years representing join-points (vertices) at which historical selectivity pattern changes. Vector. Positive real numbers
+
+Slot not used.
+
+**AbsSelYears**: (Optional) Calendar years corresponding with SelYears (eg 1951, rather than 1), used for plotting only. Vector (of same length as SelYears). Positive real numbers
+
+Slot not used.
+
+**L5Lower**: (Optional) Lower bound of L5 (use ChooseSelect function to set these). Vector. Non-negative real numbers
+
+Slot not used.
+
+**L5Upper**: (Optional) Upper bound of L5 (use ChooseSelect function to set these). Vector. Non-negative real numbers
+
+Slot not used.
+
+**LFSLower**: (Optional) Lower bound of LFS (use ChooseSelect function to set these). Vector. Non-negative real numbers
+
+Slot not used.
+
+**LFSUpper**: (Optional) Upper bound of LFS (use ChooseSelect function to set these). Vector. Non-negative real numbers
+
+Slot not used.
+
+**VmaxLower**: (Optional) Lower bound of Vmaxlen (use ChooseSelect function to set these). Vector. Fraction
+
+Slot not used.
+
+**VmaxUpper**: (Optional) Upper bound of Vmaxlen (use ChooseSelect function to set these). Vector. Fraction
+
+Slot not used.
+
+### Current Year: CurrentYr
+
+**CurrentYr**: The current calendar year (final year) of the historical simulations (eg 2011). Single value. Positive integer.
+
+Specified Value(s): <span style='color:blue'> 2016</span>
+
+
+
+
+
+### Existing Spatial Closures: MPA
+
+**MPA**: (Optional) Matrix specifying spatial closures for historical years. Each row should contain year index (e.g 10 for 10th historical year) followed by fraction of area closed to fishing for each area. i.e. each row represents a change and the number of columns is nareas + 1. The spatial closures are assumed to remain in place for the future projections unless changed by a MP. Default (if left blank) is all areas are open to fishing in historical period.
+
+Slot not used.
+
+# Obs Parameters 
+
+### Catch statistics: Cobs, Cbiascv, CAA_nsamp, CAA_ESS, CAL_nsamp, CAL_ESS
+
+**Cobs**: Log-normal catch observation error expressed as a coefficient of variation. Uniform distribution lower and upper bounds. Non-negative real numbers
+
+Specified Value(s): <span style='color:blue'> 0.01, 0.02</span>
+
+Because all hunters must present trophy rams for compulsory inspection, this OM assumes that catches are observed without bias. 
+
+
+
+
+**Cbiascv**: Log-normal coefficient of variation controlling the sampling of bias in catch observations for each simulation. Uniform distribution lower and upper bounds. Non-negative real numbers
+
+Specified Value(s): <span style='color:blue'> 0.01</span>
+
+See above. 
+
+
+
+
+**CAA_nsamp**: Number of catch-at-age observation per time step. Uniform distribution lower and upper bounds. Positive real numbers
+
+Specified Value(s): <span style='color:blue'> 41, 60</span>
+
+Assumes an average of 50 rams are harvested each year and inspected by governmental agents. 
+
+
+
+
+**CAA_ESS**: Effective sample size (independent age draws) of the multinomial catch-at-age observation error model. Uniform distribution lower and upper bounds. Positive integers
+
+Specified Value(s): <span style='color:blue'> 41, 60</span>
+
+See above. 
+
+
+
+
+**CAL_nsamp**: Number of catch-at-length observation per time step. Uniform distribution lower and upper bounds. Positive integers
+
+Specified Value(s): <span style='color:blue'> 42, 60</span>
+
+See above. 
+
+
+
+
+**CAL_ESS**: Effective sample size (independent length draws) of the multinomial catch-at-length observation error model. Uniform distribution lower and upper bounds. Positive integers
+
+Specified Value(s): <span style='color:blue'> 41, 60</span>
+
+See above. 
+
+
+
+
+### Index imprecision, bias and hyperstability: Iobs, Ibiascv, Btobs, Btbiascv, beta
+
+**Iobs**: Observation error in the relative abundance indices expressed as a coefficient of variation. Uniform distribution lower and upper bounds. Positive real numbers
+
+Specified Value(s): <span style='color:blue'> 0.05, 0.1</span>
+
+Default value. 
+
+
+
+
+**Ibiascv**: Log-normal coefficient of variation controlling error in observations of relative abundance index. Uniform distribution lower and upper bounds. Positive real numbers
+
+Specified Value(s): <span style='color:blue'> 0.2</span>
+
+Default value, not used. 
+
+
+
+
+**Btobs**: Log-normal coefficient of variation controlling error in observations of current stock biomass among years. Uniform distribution lower and upper bounds. Positive real numbers
+
+Specified Value(s): <span style='color:blue'> 0.05, 0.1</span>
+
+Default value. 
+
+
+
+
+**Btbiascv**: Uniform-log bounds for sampling persistent bias in current stock biomass. Uniform-log distribution lower and upper bounds. Positive real numbers
+
+Specified Value(s): <span style='color:blue'> 0.02, 0.05</span>
+
+Default value. 
+
+
+
+
+**beta**: A parameter controlling hyperstability/hyperdepletion where values below 1 lead to hyperstability (an index that decreases slower than true abundance) and values above 1 lead to hyperdepletion (an index that decreases more rapidly than true abundance). Uniform distribution lower and upper bounds. Positive real numbers
+
+Specified Value(s): <span style='color:blue'> 1, 1</span>
+
+Default value. 
+
+
+
+
+### Bias in maturity, natural mortality rate and growth parameters: LenMbiascv, Mbiascv, Kbiascv,t0biascv, Linfbiascv
+
+**LenMbiascv**: Log-normal coefficient of variation for sampling persistent bias in length at 50 percent maturity. Uniform distribution lower and upper bounds. Positive real numbers
+
+Specified Value(s): <span style='color:blue'> 0.1</span>
+
+Default value. 
+
+
+
+
+**Mbiascv**: Log-normal coefficient of variation for sampling persistent bias in observed natural mortality rate. Uniform distribution lower and upper bounds. Positive real numbers
+
+Specified Value(s): <span style='color:blue'> 0.1</span>
+
+Default value. 
+
+
+
+
+**Kbiascv**: Log-normal coefficient of variation for sampling persistent bias in observed growth parameter K. Uniform distribution lower and upper bounds. Positive real numbers
+
+Specified Value(s): <span style='color:blue'> 0.1</span>
+
+Default value. 
+
+
+
+
+**t0biascv**: Log-normal coefficient of variation for sampling persistent bias in observed t0. Uniform distribution lower and upper bounds. Positive real numbers
+
+Specified Value(s): <span style='color:blue'> 0.1</span>
+
+Default value. 
+
+
+
+
+**Linfbiascv**: Log-normal coefficient of variation for sampling persistent bias in observed maximum length. Uniform distribution lower and upper bounds. Positive real numbers
+
+Specified Value(s): <span style='color:blue'> 0.1</span>
+
+Default value. 
+
+
+
+
+### Bias in length at first capture, length at full selection: LFCbiascv, LFSbiascv
+
+**LFCbiascv**: Log-normal coefficient of variation for sampling persistent bias in observed length at first capture. Uniform distribution lower and upper bounds. Positive real numbers
+
+Specified Value(s): <span style='color:blue'> 0.1</span>
+
+Default value. 
+
+
+
+
+**LFSbiascv**: Log-normal coefficient of variation for sampling persistent bias in length-at-full selection. Uniform distribution lower and upper bounds. Positive real numbers
+
+Specified Value(s): <span style='color:blue'> 0.1</span>
+
+Default value. 
+
+
+
+
+### Bias in fishery reference points, unfished biomass, FMSY, FMSY/M ratio, biomass at MSY relative to unfished: FMSYbiascv, FMSY_Mbiascv, BMSY_B0biascv
+
+**FMSYbiascv**: Log-normal coefficient of variation for sampling persistent bias in FMSY. Uniform distribution lower and upper bounds. Positive real numbers
+
+Specified Value(s): <span style='color:blue'> 0.4</span>
+
+Default value. 
+
+
+
+
+**FMSY_Mbiascv**: Log-normal coefficient of variation for sampling persistent bias in FMSY/M. Uniform distribution lower and upper bounds. Positive real numbers
+
+Specified Value(s): <span style='color:blue'> 0.1</span>
+
+Default value. 
+
+
+
+
+**BMSY_B0biascv**: Log-normal coefficient of variation for sampling persistent bias in BMSY relative to unfished. Uniform distribution lower and upper bounds. Positive real numbers
+
+Specified Value(s): <span style='color:blue'> 0.1</span>
+
+Default value. 
+
+
+
+
+### Management targets in terms of the index (i.e., model free), the total annual catches and absolute biomass levels: Irefbiascv, Crefbiascv, Brefbiascv
+
+**Irefbiascv**: Log-normal coefficient of variation for sampling persistent bias in relative abundance index at BMSY. Uniform distribution lower and upper bounds. Positive real numbers
+
+Specified Value(s): <span style='color:blue'> 0.5</span>
+
+Default value. 
+
+
+
+
+**Crefbiascv**: Log-normal coefficient of variation for sampling persistent bias in MSY. Uniform distribution lower and upper bounds. Positive real numbers
+
+Specified Value(s): <span style='color:blue'> 0.5</span>
+
+Default value. 
+
+
+
+
+**Brefbiascv**: Log-normal coefficient of variation for sampling persistent bias in BMSY. Uniform distribution lower and upper bounds. Positive real numbers
+
+Specified Value(s): <span style='color:blue'> 0.5</span>
+
+Default value. 
+
+
+
+
+### Depletion bias and imprecision: Dbiascv, Dobs
+
+**Dbiascv**: Log-normal coefficient of variation for sampling persistent bias in stock depletion. Uniform distribution lower and upper bounds. Positive real numbers
+
+Specified Value(s): <span style='color:blue'> 0.5</span>
+
+Default value. 
+
+
+
+
+**Dobs**: Log-normal coefficient of variation controlling error in observations of stock depletion among years. Uniform distribution lower and upper bounds. Positive real numbers
+
+Specified Value(s): <span style='color:blue'> 0.2, 0.4</span>
+
+Default value. 
+
+
+
+
+### Recruitment compensation and trend: hbiascv, Recbiascv
+
+**hbiascv**: Log-normal coefficient of variation for sampling persistent bias in steepness. Uniform distribution lower and upper bounds. Positive real numbers
+
+Specified Value(s): <span style='color:blue'> 0.1</span>
+
+Default value. 
+
+
+
+
+**Recbiascv**: Log-normal coefficient of variation for sampling persistent bias in recent recruitment strength. Uniform distribution lower and upper bounds. Positive real numbers
+
+Specified Value(s): <span style='color:blue'> 0.1, 0.1</span>
+
+Default value. 
+
+
+
+
+
+
+
+
+
+### Obs Plots
+```{r plot.Obs, echo=FALSE, fig.asp=1}
+plotObs(OM)
+```
+
+# Imp Parameters 
+
+### Output Control Implementation Error: TACFrac, TACSD
+
+**TACFrac**: Mean fraction of TAC taken. Uniform distribution lower and upper bounds. Positive real number.
+
+Specified Value(s): <span style='color:blue'> 1, 1</span>
+
+All TAC taken without SD in implementation.  
+
+
+
+
+**TACSD**: Log-normal coefficient of variation in the fraction of Total Allowable Catch (TAC) taken. Uniform distribution lower and upper bounds. Non-negative real numbers.
+
+Specified Value(s): <span style='color:blue'> 0.01, 0.02</span>
+
+Default value. 
+
+
+
+
+### Effort Control Implementation Error: TAEFrac, TAESD
+
+**TAEFrac**: Mean fraction of TAE taken. Uniform distribution lower and upper bounds. Positive real number.
+
+Specified Value(s): <span style='color:blue'> 1, 1</span>
+
+No justification provided.  
+
+
+
+
+**TAESD**: Log-normal coefficient of variation in the fraction of Total Allowable Effort (TAE) taken. Uniform distribution lower and upper bounds. Non-negative real numbers.
+
+Specified Value(s): <span style='color:blue'> 0.01, 0.02</span>
+
+No justification provided.  
+
+
+
+
+### Size Limit Control Implementation Error: SizeLimFrac, SizeLimSD
+
+**SizeLimFrac**: The real minimum size that is retained expressed as a fraction of the size. Uniform distribution lower and upper bounds. Positive real number.
+
+Specified Value(s): <span style='color:blue'> 1, 1</span>
+
+Assume that a size limit would be well-implemented. 
+
+
+
+
+**SizeLimSD**: Log-normal coefficient of variation controlling mismatch between a minimum size limit and the real minimum size retained. Uniform distribution lower and upper bounds. Non-negative real numbers.
+
+Specified Value(s): <span style='color:blue'> 0.01, 0.02</span>
+
+Assume some minor variation in size limits. 
+
+
+
+
+
+
+
+
+
+### Imp Plots
+```{r plot.Imp, echo=FALSE, fig.asp=1}
+plotImp(OM)
+```
+
+# OM Plots
+
+```{r plotOM, echo=FALSE, fig.asp=2}
+plot.OM(out)
+```
+
+
+# References
+
+
+
+
+
+Douhard, M., Festa-Bianchet, M., Pelletier, F., Gaillard, J.M., and Bonenfanti, C. 2016. Changes in horn size of Stone's sheep over four decades correlate with trophy hunting pressure. Ecological Applications 26(1): 309-21.
+
+
+
+Hoefs, M., and Bayer, M. 1983. Demographic characteristics of an unhunted Dall sheep (Ovis dalli dalli) population in southwest Yukon, Canada. Canadian Journal of Zoology 61(6): 1346-1357.
+
